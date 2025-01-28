@@ -1,0 +1,5 @@
+@use '../../styles/colors' as color;
+
+.home {
+    background-color: color.$primaryGreen;
+}
