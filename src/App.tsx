@@ -1,20 +1,33 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Home, Login, Profile } from './pages';
+import { useAuth } from "./pages/Login/useAuth";
+import { useNavigate } from "react-router-dom";
 
-const App: React.FC = () => {
-  const isLoggedIn = !!localStorage.getItem('accessToken'); // Cambia según tu lógica de autenticación
+function App() {
+    const { user, loading } = useAuth();
+    const navigate = useNavigate();
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
-      </Routes>
-    </Router>
-  );
-};
+    if (loading) return <div>Cargando...</div>;
+
+    return (
+        <div>
+            {user ? (
+                <div>
+                    <h1>¡Hola, {user.display_name}!</h1>
+                    <img src={user.images?.[0]?.url} alt="Avatar" />
+                    <button onClick={() => {
+                        localStorage.clear();
+                        navigate("/login");
+                    }}>
+                        Cerrar sesión
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <h1>Por favor, inicia sesión</h1>
+                    <button onClick={() => navigate("/login")}>Ir al Login</button>
+                </div>
+            )}
+        </div>
+    );
+}
 
 export default App;
-
