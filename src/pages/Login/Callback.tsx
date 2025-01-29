@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-
-import { SPOTIFY_CALLBACK_URL } from "../../config";
-import { AuthResponse } from "./types";
+import { SPOTIFY_CALLBACK_URL } from "../../config"; // 🔹 Asegurar que usa "/auth/callback"
 
 const Callback = () => {
     const navigate = useNavigate();
@@ -15,15 +12,14 @@ const Callback = () => {
 
         if (code) {
             axios
-                .get<AuthResponse>(`${SPOTIFY_CALLBACK_URL}?code=${code}`)
+                .get(`${SPOTIFY_CALLBACK_URL}?code=${code}`) // 🔹 Aquí debe usarse "/auth/callback"
                 .then((response) => {
                     if (response.status !== 200) {
                         throw new Error("Error en la autenticación con Spotify");
                     }
 
                     const { access_token, refresh_token, expires_in } = response.data;
-                    
-                    // Guardar tokens solo si la respuesta es válida
+
                     if (access_token && refresh_token) {
                         localStorage.setItem("access_token", access_token);
                         localStorage.setItem("refresh_token", refresh_token);
