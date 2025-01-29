@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-
 import { SPOTIFY_CALLBACK_URL } from "../../config";
 import { AuthResponse } from "./types";
 
@@ -13,13 +11,14 @@ const Callback = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get("code");
 
+        console.log("🔄 Código recibido de Spotify:", code);
+        console.log("📡 SPOTIFY_CALLBACK_URL usado en la petición:", SPOTIFY_CALLBACK_URL);
+
         if (code) {
             axios
                 .get<AuthResponse>(`${SPOTIFY_CALLBACK_URL}?code=${code}`)
                 .then((response) => {
-                    if (response.status !== 200) {
-                        throw new Error("Error en la autenticación con Spotify");
-                    }
+                    console.log("✅ Respuesta del backend:", response.data);
 
                     const { access_token, refresh_token, expires_in } = response.data;
 
@@ -28,7 +27,7 @@ const Callback = () => {
                         localStorage.setItem("refresh_token", refresh_token);
                         localStorage.setItem("token_expiration", (new Date().getTime() + expires_in * 1000).toString());
 
-                        navigate("/"); // Redirigir a home
+                        navigate("/");
                     } else {
                         throw new Error("Tokens inválidos recibidos");
                     }
