@@ -1,32 +1,29 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./pages/Login/useAuth";
-import { useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./pages/Profile/Profile";
+import Login from "./pages/Login/Login";
+import Callback from "./pages/Login/Callback";
 
-function App() {
+const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
     const { user, loading } = useAuth();
-    const navigate = useNavigate();
 
     if (loading) return <div>Cargando...</div>;
 
+    return user ? element : <Navigate to="/login" replace />;
+};
+
+function App() {
     return (
-        <div>
-            {user ? (
-                <div>
-                    <h1>¡Hola, {user.display_name}!</h1>
-                    <img src={user.images?.[0]?.url} alt="Avatar" />
-                    <button onClick={() => {
-                        localStorage.clear();
-                        navigate("/login");
-                    }}>
-                        Cerrar sesión
-                    </button>
-                </div>
-            ) : (
-                <div>
-                    <h1>Por favor, inicia sesión</h1>
-                    <button onClick={() => navigate("/login")}>Ir al Login</button>
-                </div>
-            )}
-        </div>
+        <Router>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Navigate to="/profile" />} />
+                <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/callback" element={<Callback />} />
+            </Routes>
+        </Router>
     );
 }
 

@@ -44,7 +44,7 @@ export const makeRequestWithToken = async (url: string, options: RequestInit = {
         accessToken = await refreshAccessToken();
 
         if (!accessToken) {
-            throw new Error("No se pudo renovar el token de acceso.");
+            throw new Error("The access token could not be renewed.");
         }
     }
 
@@ -61,7 +61,7 @@ export const makeRequestWithToken = async (url: string, options: RequestInit = {
             accessToken = await refreshAccessToken();
 
             if (!accessToken) {
-                throw new Error("No se pudo renovar el token de acceso después de 401.");
+                throw new Error("The access token could not be renewed after getting the 401 error.");
             }
 
             return await fetch(url, {
