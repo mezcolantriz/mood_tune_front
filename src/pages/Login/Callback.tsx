@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SPOTIFY_CALLBACK_URL } from "../../config";
-import { AuthResponse } from "../../types";
+import { AuthResponse } from "./types";
 
 const Callback = () => {
     const navigate = useNavigate();
