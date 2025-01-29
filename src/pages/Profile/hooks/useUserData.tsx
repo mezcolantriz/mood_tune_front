@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { getUserPlaylists, getTopTracks, getTopArtists, getFavoriteTracks } from "../../utils/apiUserData";
-import { UserData, Playlist, Track, Artist } from "./types";
+import { getUserPlaylists, getUserTopArtists, getUserTopTracks, getUserFavouriteTracks } from "./getUserSpotifyData";
+import { Playlist, Track, Artist, SavedTrack } from "../types";
 
-export function useUserData(): UserData {
+export function useUserData() {
     const [playlists, setPlaylists] = useState<Playlist[]>([]);
     const [topTracks, setTopTracks] = useState<Track[]>([]);
     const [topArtists, setTopArtists] = useState<Artist[]>([]);
-    const [favoriteTracks, setFavoriteTracks] = useState<Track[]>([]);
+    const [favoriteTracks, setFavoriteTracks] = useState<SavedTrack[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -14,17 +14,17 @@ export function useUserData(): UserData {
             try {
                 const [playlistsData, topTracksData, topArtistsData, favoriteTracksData] = await Promise.all([
                     getUserPlaylists(),
-                    getTopTracks(),
-                    getTopArtists(),
-                    getFavoriteTracks()
+                    getUserTopTracks(),
+                    getUserTopArtists(),
+                    getUserFavouriteTracks()
                 ]);
 
                 setPlaylists(playlistsData.items || []);
                 setTopTracks(topTracksData.items || []);
                 setTopArtists(topArtistsData.items || []);
-                setFavoriteTracks(favoriteTracksData.items || []);
+                setFavoriteTracks(favoriteTracksData.items || []); // Asegura que sea un array
             } catch (error) {
-                console.error("Error:", error);
+                console.error("❌ Error obteniendo datos del usuario:", error);
             } finally {
                 setLoading(false);
             }

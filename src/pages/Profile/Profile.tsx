@@ -1,8 +1,8 @@
 import React from "react";
-import { useUserData } from "./useUserData";
-import { Playlist, Track, Artist } from "./types"; // Importa los tipos
+import { useUserData } from "./hooks/useUserData";
+import { Playlist, Track, Artist, SavedTrack } from "./types";
 
-const UserDashboard: React.FC = () => {
+const Profile: React.FC = () => {
     const { playlists, topTracks, topArtists, favoriteTracks, loading } = useUserData();
 
     if (loading) return <div>Cargando datos...</div>;
@@ -22,7 +22,7 @@ const UserDashboard: React.FC = () => {
             <ul>
                 {topTracks.map((track: Track) => (
                     <li key={track.id}>
-                        {track.name} - {track.artists?.[0]?.name || "Unknown artist"}
+                        {track.name} - {track.artists?.map((artist) => artist.name).join(", ") || "Unknown artist"}
                     </li>
                 ))}
             </ul>
@@ -36,9 +36,18 @@ const UserDashboard: React.FC = () => {
 
             <h2>💖 Your Saved Songs</h2>
             <ul>
-                {favoriteTracks.map((track: Track) => (
-                    <li key={track.id}>
-                        {track.name} - {track.artists?.[0]?.name || "Unknown artist"}
+                {favoriteTracks.map((savedTrack: SavedTrack) => (
+                    <li key={savedTrack.track.id}>
+                        <img
+                            src={savedTrack.track.album.images[0]?.url}
+                            alt={savedTrack.track.name}
+                            style={{ width: "50px", height: "50px", borderRadius: "5px" }}
+                        />
+                        <strong>{savedTrack.track.name}</strong> -{" "}
+                        {savedTrack.track.artists.map((artist) => artist.name).join(", ") || "Unknown artist"} 
+                        ({savedTrack.track.album.name})
+                        <br />
+                        <small>📅 Saved on: {new Date(savedTrack.added_at).toLocaleDateString()}</small>
                     </li>
                 ))}
             </ul>
@@ -46,4 +55,4 @@ const UserDashboard: React.FC = () => {
     );
 };
 
-export default UserDashboard;
+export default Profile;

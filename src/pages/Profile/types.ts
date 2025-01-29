@@ -21,3 +21,22 @@ export interface UserData {
     favoriteTracks: Track[];
     loading: boolean;
 }
+
+export interface SavedTrack {
+    added_at: string;
+    track: {
+        id: string;
+        name: string;
+        album: {
+            id: string;
+            name: string;
+            images: { url: string; height?: number; width?: number }[];
+        };
+        artists: {
+            id: string;
+            name: string;
+        }[];
+        duration_ms: number;
+        popularity: number;
+    };
+}
