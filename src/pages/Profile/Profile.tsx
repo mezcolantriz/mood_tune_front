@@ -1,9 +1,9 @@
 import React from "react";
 import { useUserData } from "./hooks/useUserData";
-import { Playlist, Track, Artist, SavedTrack } from "./types";
+import { Playlist, Track, Artist } from "./types";
 
 const Profile: React.FC = () => {
-    const { playlists, topTracks, topArtists, favoriteTracks, loading } = useUserData();
+    const { playlists, topTracks, topArtists, loading } = useUserData();
 
     if (loading) return <div>Cargando datos...</div>;
 
@@ -34,23 +34,7 @@ const Profile: React.FC = () => {
                 ))}
             </ul>
 
-            <h2>💖 Your Saved Songs</h2>
-            <ul>
-                {favoriteTracks.map((savedTrack: SavedTrack) => (
-                    <li key={savedTrack.track.id}>
-                        <img
-                            src={savedTrack.track.album.images[0]?.url}
-                            alt={savedTrack.track.name}
-                            style={{ width: "50px", height: "50px", borderRadius: "5px" }}
-                        />
-                        <strong>{savedTrack.track.name}</strong> -{" "}
-                        {savedTrack.track.artists.map((artist) => artist.name).join(", ") || "Unknown artist"} 
-                        ({savedTrack.track.album.name})
-                        <br />
-                        <small>📅 Saved on: {new Date(savedTrack.added_at).toLocaleDateString()}</small>
-                    </li>
-                ))}
-            </ul>
+            
         </div>
     );
 };
