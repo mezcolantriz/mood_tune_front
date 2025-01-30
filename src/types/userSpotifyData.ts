@@ -22,7 +22,7 @@ export interface UserData {
     loading: boolean;
 }
 
-export interface SavedTrack {
+export interface FavouriteTracks {
     added_at: string;
     track: {
         id: string;
