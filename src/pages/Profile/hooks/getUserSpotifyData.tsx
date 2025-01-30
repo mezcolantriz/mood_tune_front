@@ -16,14 +16,11 @@ export const getUserTopArtists = async (): Promise<{ items: Artist[] }> => {
   return response.ok ? response.json() : { items: [] };
 };
 
-export const getUserFavouriteTracks = async (): Promise<{ items: SavedTrack[] }> => {
+export const getUserFavouriteTracks = async (): Promise<SavedTrack[]> => {
   const response = await makeRequestWithToken("https://api.spotify.com/v1/me/tracks?limit=50");
-  if (!response.ok) return { items: [] };
+  if (!response.ok) return [];
 
   const data = await response.json();
-  console.log("📡 Canciones favoritas obtenidas:", data);
 
-  return {
-      items: Array.isArray(data.items) ? data.items.map((item: { track: SavedTrack }) => item.track) : [],
-  };
+  return Array.isArray(data.items) ? (data.items as SavedTrack[]) : [];
 };

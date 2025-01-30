@@ -6,13 +6,13 @@ export function useUserData() {
     const [playlists, setPlaylists] = useState<Playlist[]>([]);
     const [topTracks, setTopTracks] = useState<Track[]>([]);
     const [topArtists, setTopArtists] = useState<Artist[]>([]);
-    const [favoriteTracks, setFavoriteTracks] = useState<SavedTrack[]>([]);
+    const [favouriteTracks, setFavouriteTracks] = useState<SavedTrack[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const [playlistsData, topTracksData, topArtistsData, favoriteTracksData] = await Promise.all([
+                const [playlistsData, topTracksData, topArtistsData, favouriteTracksData] = await Promise.all([
                     getUserPlaylists(),
                     getUserTopTracks(),
                     getUserTopArtists(),
@@ -22,7 +22,7 @@ export function useUserData() {
                 setPlaylists(playlistsData.items || []);
                 setTopTracks(topTracksData.items || []);
                 setTopArtists(topArtistsData.items || []);
-                setFavoriteTracks(favoriteTracksData.items || []); // Asegura que sea un array
+                setFavouriteTracks(favouriteTracksData || []);
             } catch (error) {
                 console.error("❌ Error obteniendo datos del usuario:", error);
             } finally {
@@ -33,5 +33,5 @@ export function useUserData() {
         fetchUserData();
     }, []);
 
-    return { playlists, topTracks, topArtists, favoriteTracks, loading };
+    return { playlists, topTracks, topArtists, favouriteTracks, loading };
 }

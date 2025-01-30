@@ -10,12 +10,10 @@ export function useAuth() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                console.log("📡 Intentando obtener perfil del usuario...");
-
                 const response = await makeRequestWithToken(SPOTIFY_ME_URL);
 
                 if (!response.ok) {
-                    throw new Error(`Error en la petición: ${response.status}`);
+                    throw new Error(`Error on request: ${response.status}`);
                 }
 
                 const data: UserProfile = await response.json();
@@ -23,10 +21,10 @@ export function useAuth() {
                 if (data && typeof data === "object") {
                     setUser(data);
                 } else {
-                    throw new Error("❌ Datos de usuario inválidos");
+                    throw new Error("❌ Invalid user data");
                 }
             } catch (error) {
-                console.error("❌ Error obteniendo perfil de usuario:", error);
+                console.error("❌ Error :", error);
                 setUser(null);
             } finally {
                 setLoading(false);
