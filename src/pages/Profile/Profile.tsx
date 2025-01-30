@@ -41,10 +41,14 @@ const Profile: React.FC = () => {
 
                     const { track } = savedTrack;
                     const album = track.album ?? null;
-                    const albumName = album ? album.name : "No album";
-                    const albumImage = album?.images?.length ? album.images[0].url : null;
-                    const artistNames = track.artists?.length ? track.artists.map((artist) => artist.name).join(", ") : "Unknown artist";
-                    const savedDate = savedTrack.added_at ? new Date(savedTrack.added_at).toLocaleDateString() : "Unknown date";
+                    const albumName = album ? album.name : "No album available";
+                    const albumImage = album?.images?.[0]?.url || "";
+                    const artistNames = track.artists?.length
+                        ? track.artists.map((artist) => artist.name).join(", ")
+                        : "Unknown artist";
+                    const savedDate = savedTrack.added_at
+                        ? new Date(savedTrack.added_at).toLocaleDateString()
+                        : "Unknown date";
 
                     return (
                         <li key={track.id} style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
@@ -60,7 +64,7 @@ const Profile: React.FC = () => {
 
                             <div>
                                 <strong>{track.name}</strong> - {artistNames} <br />
-                                <small>🎶 Álbum: {albumName}</small> <br />
+                                <small>🎶 Album: {albumName}</small> <br />
                                 <small>📅 Saved on: {savedDate}</small>
                             </div>
                         </li>
