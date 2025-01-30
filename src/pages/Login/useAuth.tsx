@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { SPOTIFY_ME_URL } from "../../config";
 import { makeRequestWithToken } from "../../utils/apiClient";
-import { UserProfile } from "./types";
+import { UserProfile } from "../../types/userData";
 
 export function useAuth() {
     const [user, setUser] = useState<UserProfile | null>(null);
