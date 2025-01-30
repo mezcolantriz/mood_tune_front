@@ -1,10 +1,23 @@
-.navbar {
+@use '../../assets/icons/style.scss' as *;
+
+.topmenu {
     background: #1db954;
     padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
 
+    .icon {
+        font-family: 'mood-tune' !important;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        font-size: 24px; // Asegurar tamaño visible
+        color: white;
+      }
+      
     .nav-links {
         list-style: none;
         display: flex;

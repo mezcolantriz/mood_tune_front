@@ -1,6 +1,7 @@
+import "./styles/_global.scss"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./pages/Login/useAuth";
-import Navbar from "./components/Navbar/Navbar";
+import TopMenu from "./components/TopMenu/TopMenu";
 import Profile from "./pages/Profile/Profile";
 import Login from "./pages/Login/Login";
 import Callback from "./pages/Login/Callback";
@@ -16,7 +17,7 @@ const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
 function App() {
     return (
         <Router>
-            <Navbar />
+            <TopMenu />
             <Routes>
                 <Route path="/" element={<Navigate to="/profile" />} />
                 <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />

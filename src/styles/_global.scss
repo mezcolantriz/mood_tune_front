@@ -1,0 +1,10 @@
+@use './colors' as *;
+@use './fonts' as *;
+@use './mixins' as *;
+@use './reset' as *;
+
+body { 
+    font-family: 'Avenir Next', sans-serif;
+    background-color: $darkGray;
+    color: $pureWhite;
+}

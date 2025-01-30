@@ -1,0 +1,33 @@
+.user-image {
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #444; // Fondo si no hay imagen
+    color: white;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    &--sm {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: transform 0.2s;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  
+    &--xl {
+      width: 150px;
+      height: 150px;
+      border: 4px solid white;
+    }
+}
+  
