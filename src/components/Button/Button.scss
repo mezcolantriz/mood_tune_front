@@ -1,0 +1,67 @@
+@use '../../styles/colors' as *;
+
+.btn {
+    height: 50px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+
+    .btn__icon {
+        max-height: 20px;
+    }
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  
+    &--primary {
+      background-color: $limePop;
+      color: $pureBlack;
+  
+      &:hover {
+        background-color: $limePop;
+        color: $darkGray;
+      }
+    }
+  
+    &--secondary {
+      background-color: #282828;
+      color: $pureWhite;
+  
+      &:hover {
+        background-color: #3b3b3b;
+      }
+    }
+  
+    &--danger {
+      background-color: #e63946;
+      color: white;
+  
+      &:hover {
+        background-color: #c62828;
+      }
+    }
+
+    &--login {
+        background-color: $greenSuccess;
+        color: $pureBlack;
+    
+        &:hover {
+          background-color: $limePop;
+          color: $darkGray;
+        }
+      }
+  }
+  

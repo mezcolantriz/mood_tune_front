@@ -2,7 +2,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SPOTIFY_LOGIN_URL } from "../../config";
 
-import styles from "./Login.module.scss";
+import Button from "../../components/Button/Button";
+import Background from "../../components/Background/Background";
+
+import  spotifyLogo  from "../../assets/images/spotifyLogo.svg";
+
+import "./Login.scss";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -19,11 +24,25 @@ const Login = () => {
     };
 
     return (
-        <div className={styles.login}>
-            <h1>Login with Spotify</h1>
-            <button onClick={handleLogin}>Login</button>
-        </div>
+        <>
+            <Background showFirst={true} showSecond={true} showThird={true} />
+            <div className="login">
+                <h1 className="login__text">
+                    Your moods,
+                    <br />
+                    your playlists.
+                </h1>
+                <Button
+                    text="Login with Spotify"
+                    onClick={handleLogin}
+                    variant="login" 
+                    icon={<img src={spotifyLogo} alt="Spotify" width={20} height={20} />}
+                    iconPosition="left"
+                />
+            </div>
+        </>
     );
 };
 
 export default Login;
+

@@ -21,14 +21,4 @@ $breakpoints: (
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 16px;
-  
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    min-height: calc(100vh - var(--header-height) - var(--footer-height));
-  
-    @include tablet {
-      padding: 0 24px;
-    }
-  }
+}
