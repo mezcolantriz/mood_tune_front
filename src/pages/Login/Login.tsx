@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SPOTIFY_LOGIN_URL } from "../../config";
 import { Link } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
 import Background from "../../components/Background/Background";
+import LoadingSpinner from "../../components/LoaingSpinner/LoadingSpinner";
 
 import  spotifyLogo  from "../../assets/images/spotifyLogo.svg";
 
@@ -12,6 +13,7 @@ import "./Login.scss";
 
 const Login = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const accessToken = localStorage.getItem("access_token");
@@ -21,6 +23,7 @@ const Login = () => {
     }, [navigate]);
 
     const handleLogin = () => {
+        setIsLoading(true);
         window.location.href = SPOTIFY_LOGIN_URL;
     };
 
@@ -51,6 +54,7 @@ const Login = () => {
                     </span>
                 </p>
             </div>
+            {isLoading && <LoadingSpinner />}
         </>
     );
 };
