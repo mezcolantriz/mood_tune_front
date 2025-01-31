@@ -1,6 +1,10 @@
 export interface Playlist {
     id: string;
     name: string;
+    description: string;
+    images: { url: string }[];
+    external_urls: { spotify: string };
+    tracks: { total: number };
 }
 
 export interface Artist {
@@ -13,7 +17,12 @@ export interface Artist {
 export interface Track {
     id: string;
     name: string;
-    artists: Artist[];
+    artists: { name: string }[];
+    album: { images: { url: string }[] };
+    duration_ms: number;
+    popularity: number;
+    external_urls: { spotify: string };
+    preview_url: string | null;
 }
 
 export interface UserData {
@@ -40,5 +49,6 @@ export interface FavouriteTracks {
         }[];
         duration_ms: number;
         popularity: number;
+        external_urls: { spotify: string };
     };
 }
