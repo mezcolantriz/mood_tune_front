@@ -1,0 +1,33 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/colors" as *;
+
+.privacy-policy {
+    @include container;
+    
+    .privacy-policy__title {
+        font-size: 30px;
+        font-weight: bold;
+        color: $pinkBlush;
+    }
+
+    .privacy-policy__subtitle {
+        font-size: 24px;
+        font-weight: bold;
+        color: $limePop;
+        margin-top: 40px;
+    }
+
+    p {
+        margin-bottom: 12px;
+    }
+
+    ul {
+        border-left: 2px solid $pureWhite;
+        padding-left: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+}

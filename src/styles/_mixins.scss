@@ -1,7 +1,8 @@
 // Breakpoints
 $breakpoints: (
   "tablet": 768px,
-  "desktop": 1024px
+  "desktop": 1024px,
+  "desktop-xl": 1240px 
 );
 
 @mixin tablet {
@@ -16,9 +17,24 @@ $breakpoints: (
   }
 }
 
+@mixin desktop-xl {
+  @media (min-width: map-get($breakpoints, "desktop-xl")) {
+    @content;
+  }
+}
+
 // Container
 @mixin container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 40px 20px;
+
+    @include tablet {
+      padding: 60px 20px;
+    }
+
+    @include desktop-xl {
+      padding: 60px 0;
+    }
 }
