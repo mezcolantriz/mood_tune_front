@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { refreshAccessToken } from "./apiClient";
+import { refreshAccessToken } from "../utils/apiClient";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Track } from "../../types/userSpotifyData";
-import { getUserTopTracks } from "../../utils/getUserSpotifyData";
+import { getUserTopTracks } from "../../hooks/getUserSpotifyData";
+import { getFilteredTopTracks } from "../../hooks/getUserSpotifyData";
 
 export const useUserTopTracks = () => {
     const [topTracks, setTopTracks] = useState<Track[]>([]);
@@ -11,9 +12,12 @@ export const useUserTopTracks = () => {
         const fetchUserData = async () => {
             try {
                 const topTracksData = await getUserTopTracks();
-                setTopTracks(topTracksData?.items ?? []);
+                
+                const filteredTracksResponse = await getFilteredTopTracks(topTracksData.items);
+                
+                setTopTracks(filteredTracksResponse.filtered_tracks);
             } catch (error) {
-                setError(`There was a problem getting the featured songs. Try again later: ${error}`);
+                setError(`Hubo un problema obteniendo tus canciones más escuchadas: ${error}`);
             } finally {
                 setLoading(false);
             }

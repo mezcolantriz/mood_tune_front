@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Playlist } from "../../types/userSpotifyData";
-import { getUserPlaylists } from "../../utils/getUserSpotifyData";
+import { getUserPlaylists } from "../../hooks/getUserSpotifyData";
 
 export const useUserPlaylists = () => {
     const [playlists, setPlaylists] = useState<Playlist[]>([]);

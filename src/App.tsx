@@ -6,7 +6,7 @@ import Callback from "./pages/Login/Callback";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import "./styles/_global.scss";
 import { Home } from "./pages";
-import ProtectedRoute from "./utils/protectedRoute";
+import ProtectedRoute from "./hooks/protectedRoute";
 
 
 
