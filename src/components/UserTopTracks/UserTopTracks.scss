@@ -1,0 +1,77 @@
+@use "../../styles/colors" as *;
+@use "../../styles/mixins" as *;
+
+.top-tracks__list {
+    @include container;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .top-tracks__item {
+        max-width: 100%;
+        max-height: 250px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-right: 20px;
+        background-color: $backgroundCardColor;
+        flex: 1 1 100%;
+        box-shadow: $floatingBoxShadow;
+
+        @include tablet {
+            flex: 1 1 calc(50% - 10px);
+        }
+
+        .top-tracks__image {
+            max-width: 150px;
+            max-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            overflow: hidden;
+
+            .top-tracks__image-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .top-tracks__info {
+            padding: 12px;
+            height: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+
+            .top-tracks__name {
+                font-size: 24px;
+            }
+
+            .top-tracks__artists {
+                font-size: 16px;
+            }
+
+            .top-tracks__data {
+                flex-grow: 1;
+            }
+        }
+
+        .top-tracks__link {
+            cursor: pointer;
+            transition: color 0.2s ease-in, transform 0.2s ease-in;
+
+            .icon {
+                font-size: 70px;
+            }
+
+            &:hover { 
+                color: $limePop;
+                transform: scale(1.1);
+                box-shadow: $floatingBoxShadow;
+            }
+        }
+    }
+}

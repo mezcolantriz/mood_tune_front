@@ -12,7 +12,7 @@
     margin: auto;
     gap: 60px;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: $backgroundCardColor;
 
     .login__text {
         font-size: 50px;

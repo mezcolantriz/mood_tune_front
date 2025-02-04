@@ -1,0 +1,50 @@
+@use "../../styles/colors" as *;
+
+.user-playlists {
+    .user-playlists__list {
+        .user-playlists__item {
+            width: 250px;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.2s ease-in;
+
+            .user-playlists__image {
+                max-width: 100%;
+                opacity: 0.5;
+                object-fit: cover;
+                transition: opacity 0.2s ease-in;
+            }
+
+            .user-playlists__data {
+                max-width: 100%;
+                padding: 12px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: opacity 0.2s ease-in;
+                text-shadow: $textShadow;
+
+                .user-playlists__title {
+                    font-size: 20px;
+                }
+
+                .user-playlists__info {
+                    font-size: 14px;
+                }
+            }
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: $floatingBoxShadow;
+
+                .user-playlists__image { opacity: 1 }
+                .user-playlists__data { opacity: 0 }
+            }
+        }
+    }
+}

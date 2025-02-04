@@ -2,50 +2,44 @@ import React from "react";
 import { useUserPlaylists } from "./useUserPlaylists";
 import Error from "../Error/Error";
 import { Playlist } from "../../types/userSpotifyData";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import "./UserPlaylists.scss";
 
 const UserPlaylists: React.FC = () => {
     const { playlists, loading, error, setError } = useUserPlaylists();
 
     return (
         <div className="user-playlists">
-            <h2>🎶 Your Playlists</h2>
-
             {error && <Error message={error} onClose={() => setError(null)} />}
 
             {loading ? (
-                <div className="user-playlists__loading">🔄 Cargando...</div>
+                <LoadingSpinner/>
             ) : playlists.length === 0 ? (
-                <p>No tienes playlists.</p>
+                <p>It seems like you don't have any playlists yet.</p>
             ) : (
                 <ul className="user-playlists__list">
                     {playlists.map((playlist: Playlist) => (
                         <li key={playlist.id} className="user-playlists__item">
-                            <img 
-                                src={playlist.images?.[0]?.url || "/default-playlist.png"} 
-                                alt={playlist.name} 
-                                className="user-playlists__image"
-                            />
-                            <div className="user-playlists__info">
-                                <a 
-                                    href={playlist.external_urls.spotify} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="user-playlists__name"
-                                >
-                                    {playlist.name}
-                                </a>
-                                <p className="user-playlists__details">
-                                    🏷 {playlist.description || "Sin descripción"} | 🎵 {playlist.tracks.total} canciones
-                                </p>
-                                <a 
-                                    href={playlist.external_urls.spotify} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="user-playlists__link"
-                                >
-                                    🔗 Abrir en Spotify
-                                </a>
-                            </div>
+                            <a 
+                                href={playlist.external_urls.spotify} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="user-playlists__playlist"
+                            >
+                                <img 
+                                    src={playlist.images?.[0]?.url || "/default-playlist.png"} 
+                                    alt={playlist.name} 
+                                    className="user-playlists__image"
+                                />
+
+                                <div className="user-playlists__data">
+                                    <h4 className="user-playlists__title">{playlist.name}</h4>
+                                    <div className="user-playlists__info">
+                                        <span className="user-playlists__description">{playlist.description}</span>
+                                        <span className="user-playlists__songs-num">{playlist.tracks.total} songs</span>
+                                    </div>
+                                </div>
+                            </a>
                         </li>
                     ))}
                 </ul>

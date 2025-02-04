@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../../components/Button/Button";
 import Background from "../../components/Background/Background";
-import LoadingSpinner from "../../components/LoaingSpinner/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 import  spotifyLogo  from "../../assets/images/spotifyLogo.svg";
 
