@@ -1,0 +1,68 @@
+@use "../../styles/colors" as *;
+
+.parameters-settings {
+    width: 300px;
+    
+    .parameters-settings__title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        margin-bottom: 16px;
+        
+
+        .icon { height: fit-content }
+    }
+
+    .parameters-settings__settings {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .parameters-settings__item {
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .parameters-settings__label {
+            color: $lightGray;
+            font-size: 12px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            max-width: 100%;
+            height: 6px;
+            background: $irisGradient;
+            border-radius: 5px;
+            outline: none;
+            transition: background 0.3s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: $pureWhite;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: $pureWhite;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+  

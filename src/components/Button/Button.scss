@@ -8,6 +8,8 @@
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 10px;
     border-radius: 50px;
     cursor: pointer;
@@ -18,7 +20,7 @@
     }
   
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
   
     &:disabled {
@@ -31,23 +33,23 @@
       color: $pureBlack;
   
       &:hover {
-        background-color: $limePop;
+        background-color: $limePop-hover;
         color: $darkGray;
       }
     }
   
     &--secondary {
-      background-color: #282828;
+      background-color: $mediumGray;
       color: $pureWhite;
   
       &:hover {
-        background-color: #3b3b3b;
+        background-color: $midLightGray;
       }
     }
   
     &--danger {
-      background-color: #e63946;
-      color: white;
+      background-color: $redError;
+      color: $pureWhite;
   
       &:hover {
         background-color: #c62828;
@@ -59,8 +61,7 @@
         color: $pureBlack;
     
         &:hover {
-          background-color: $pinkBlush;
-          color: $darkGray;
+          background-color: $greenSuccess-hover;
         }
       }
   }
