@@ -18,7 +18,7 @@
         "title": "What do you want to listen to today?",
         "preferences": "Your preferences",
         "preferences-info": "These preferences do not determine the exact value of each parameter when recommending a playlist but rather indicate how important it is for the songs to be similar to your tastes in each aspect. To calculate these values, we analyze the songs you like, but you can modify them before requesting a recommendation.",
-        "preferences-learn": "Learn more about these parameters here.",
+        "preferences-learn": "Learn more about these parameters here",
         "textarea-placeholder": "Tell us how do you feel",
         "get-playlist-mood": "Get a playlist based on my mood",
         "get-something-like": "Just give me something I like",

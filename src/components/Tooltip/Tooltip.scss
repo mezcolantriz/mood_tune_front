@@ -1,0 +1,24 @@
+@use "../../styles/colors" as *;
+
+.tooltip {
+    position: relative;
+
+    .tooltip__content {
+        position: absolute;
+        width: 400px;
+        background-color: $pureWhite;
+        box-shadow: $floatingBoxShadow;
+        color: $midLightGray;
+        padding: 20px;
+        border-radius: 12px;
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .tooltip__link {
+            color: $pinkBlush;
+            font-weight: bold;
+        }
+    }
+}

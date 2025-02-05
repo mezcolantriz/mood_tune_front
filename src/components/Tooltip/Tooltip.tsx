@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Tooltip.scss";
 
 interface TooltipProps {
   text: string;
@@ -36,11 +37,14 @@ const Tooltip = ({ text, children, link }: TooltipProps) => {
   }, []);
 
   return (
-    <div className="relative inline-block" ref={triggerRef}>
-      <div
-        className="cursor-pointer"
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setTimeout(() => setVisible(false), 200)}
+    <div 
+      className="tooltip" 
+      ref={triggerRef} 
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setTimeout(() => setVisible(false), 200)}
+    >
+      <div 
+        className="tooltip__btn"
         onClick={() => setVisible(!visible)}
       >
         {children}
@@ -48,15 +52,15 @@ const Tooltip = ({ text, children, link }: TooltipProps) => {
 
       {visible && (
         <div
-          className="absolute left-1/2 bottom-full mb-2 transform -translate-x-1/2 bg-gray-800 text-white text-sm rounded-lg py-2 px-3 shadow-lg w-max max-w-xs z-50"
+          className="tooltip__content"
           ref={tooltipRef}
           onMouseEnter={() => setVisible(true)}
-          onMouseLeave={() => setVisible(false)}
+          onMouseLeave={() => setTimeout(() => setVisible(false), 200)}
         >
           <p>{text}</p>
           {link && (
             <div className="mt-2">
-              <Link to={link.href} className="text-blue-400 underline hover:text-blue-300 text-xs">
+              <Link to={link.href} className="tooltip__link">
                 {link.text}
               </Link>
             </div>
