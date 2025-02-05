@@ -22,11 +22,11 @@
   }
   
   .language-switcher__btn.selected {
-    border-color: $pureWhite;
+    background-color: $mediumGray;
     border-radius: 8px;
 
     &:hover {
-        border-color: $limePop;
+        background-color: $midLightGray;
     }
   }
   

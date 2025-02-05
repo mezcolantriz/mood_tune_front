@@ -46,7 +46,10 @@ const MoodForm = ({ onAnalyzeMood, onGetSurprisePlaylist }: MoodTuneFormProps) =
                 <Button type="button" variant="secondary" onClick={onGetSurprisePlaylist} text={t("mood-form.get-something-like")} />
               </div>
 
-              <p className="mood-form__form-info">{t("mood-form.form-info")}</p>
+              <p className="mood-form__form-info">
+                <span className="icon icon-info"></span>
+                {t("mood-form.form-info")}
+              </p>
             </div>
           </div>
         </form>
