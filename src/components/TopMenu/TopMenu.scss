@@ -1,43 +1,49 @@
-@use '../../assets/icons/style.scss' as *;
+@use "../../styles/colors" as *;
 
 .topmenu {
-    background: #1db954;
-    padding: 1rem;
+    width: 100vw;
+    padding: 20px 60px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
-    .icon {
-        font-family: 'mood-tune' !important;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        font-size: 24px; // Asegurar tamaño visible
-        color: white;
-      }
       
     .nav-links {
+        flex-grow: 1;
         list-style: none;
         display: flex;
-        gap: 1.5rem;
+        gap: 20px;
         padding: 0;
         margin: 0;
+        font-size: 14px;
 
-        li {
+        .topmenu__link {
             display: inline;
+            text-decoration: none;
+            color: $pureWhite;
+            font-weight: bold;
+            transition: color 0.2s ease-in;
 
-            a {
-                text-decoration: none;
-                color: white;
-                font-weight: bold;
-                transition: color 0.3s ease-in-out;
-
-                &:hover {
-                    color: #000;
-                }
+            &:hover {
+                color: $limePop;
             }
         }
+
+        
+        .selected {
+            border-bottom: 2px solid $pureWhite;
+            transition: border-color 0.2s ease-in;
+            &:hover {
+                border-color: $limePop;
+            }
+        }
+
+        .topmenu__main-link {
+            color: $pinkBlush;
+            border-color: $pinkBlush;
+        }
+    }
+
+    .topmenu__settings {
+        display: flex;
     }
 }

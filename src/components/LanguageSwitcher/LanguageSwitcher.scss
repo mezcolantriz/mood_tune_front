@@ -1,0 +1,32 @@
+@use "../../styles/colors" as *;
+
+.language-switcher {
+    display: flex;
+    margin-right: 20px;
+  }
+  
+  .language-switcher__btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 14px;
+    color: $pureWhite;
+    transition: all 0.3s ease-in-out;
+  
+    &:hover {
+      color: $limePop;
+    }
+  }
+  
+  .language-switcher__btn.selected {
+    border-color: $pureWhite;
+    border-radius: 8px;
+
+    &:hover {
+        border-color: $limePop;
+    }
+  }
+  

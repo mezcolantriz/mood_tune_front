@@ -3,6 +3,8 @@
 .tooltip {
     position: relative;
 
+    .tooltip__btn { cursor: pointer }
+
     .tooltip__content {
         position: absolute;
         width: 400px;
@@ -19,6 +21,12 @@
         .tooltip__link {
             color: $pinkBlush;
             font-weight: bold;
+            transition: color 0.2s ease-in;
+            cursor: pointer;
+
+            &:hover {
+                color: $pinkBlush-hover;
+            }
         }
     }
 }

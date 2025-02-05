@@ -4,8 +4,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #444; // Fondo si no hay imagen
-    color: white;
   
     img {
       width: 100%;
@@ -17,7 +15,7 @@
       width: 40px;
       height: 40px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.2s ease-in;
   
       &:hover {
         transform: scale(1.1);
