@@ -19,7 +19,6 @@ export const refreshAccessToken = async (): Promise<string | null> => {
         }
 
         const newTokens = await response.json();
-
         localStorage.setItem("access_token", newTokens.access_token);
 
         if (newTokens.refresh_token) {

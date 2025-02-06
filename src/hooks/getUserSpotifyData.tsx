@@ -1,5 +1,5 @@
 import { makeRequestWithToken } from "../utils/apiClient";
-import { Playlist, Track, Artist, FavouriteTracks, FavouriteTracksData } from "../types/userSpotifyData";
+import { Playlist, Track, Artist, FavouriteTracks, FavouriteTracksData, TrackResponse } from "../types/userSpotifyData";
 
 export const getUserPlaylists = async (): Promise<{ items: Playlist[] }> => {
   const response = await makeRequestWithToken("https://api.spotify.com/v1/me/playlists?limit=50");
@@ -46,18 +46,19 @@ export const getUserFavouriteTracks = async (): Promise<FavouriteTracks[]> => {
   return Array.isArray(data.items) ? data.items : [];
 };
 
-export const getFilteredTopTracks = async (tracks: Track[]): Promise<{ filtered_tracks: Track[] }> => {
+export const getFilteredTopTracks = async (tracks: Track[]): Promise<{ filtered_tracks: TrackResponse[] }> => {
   const response = await fetch("http://localhost:5000/filter/filtered-top-tracks", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ tracks }),
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ tracks }),
   });
 
   if (!response.ok) {
-    throw new Error("Error al obtener las canciones filtradas");
+      throw new Error("Error al obtener las canciones filtradas");
   }
 
-  return await response.json();
+  return await response.json(); // ✅ Devuelve un objeto con filtered_tracks
 };
 
 export const getFilteredFollowedArtists = async (artists: Artist[]): Promise<{ filtered_artists: Artist[] }> => {
@@ -76,27 +77,35 @@ export const getFilteredFollowedArtists = async (artists: Artist[]): Promise<{ f
 
 export const getFilteredFavouriteTracks = async (
   favouriteTracksData: FavouriteTracksData
-): Promise<{ filtered_tracks: Track[] }> => {
+): Promise<{ filtered_tracks: TrackResponse[] }> => {
   if (!favouriteTracksData || !favouriteTracksData.tracks) {
-    throw new Error("Los datos de canciones favoritas no son válidos.");
+      throw new Error("Los datos de canciones favoritas no son válidos.");
   }
 
   const tracks = favouriteTracksData.tracks.map((item) => item.track);
 
-  const response = await fetch(
-    "http://localhost:5000/filter/filtered-favourite-tracks",
-    {
+  const response = await fetch("http://localhost:5000/filter/filtered-favourite-tracks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ tracks }),
-    }
-  );
+  });
 
   if (!response.ok) {
-    throw new Error("Error al obtener las canciones favoritas filtradas");
+      throw new Error("Error al obtener las canciones favoritas filtradas");
+  }
+
+  return await response.json(); // ✅ Devuelve un objeto con filtered_tracks
+};
+
+export const getFilteredTracks = async () => {
+  const response = await fetch("http://localhost:5000/filter/get-filtered-tracks", {
+      method: "GET",
+      credentials: "include",
+  });
+
+  if (!response.ok) {
+      throw new Error("Error al obtener las canciones filtradas");
   }
 
   return await response.json();
 };
-
-

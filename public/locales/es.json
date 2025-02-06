@@ -1,11 +1,11 @@
 {
     "navbar": {
         "mood-form": "Recomiéndame una playlist!",
-        "playlists": "Tus playlists",
-        "stats": "Tus estadísticas",
-        "moods": "Tus moods",
-        "fav-songs": "Tus canciones favoritas",
-        "fav-artists": "Artistas que sigues",
+        "playlists": "Mis playlists",
+        "stats": "Mis estadísticas",
+        "moods": "Mis moods",
+        "fav-songs": "Mis canciones favoritas",
+        "fav-artists": "Artistas que sigo",
         "log-out": "Cerrar sesión"
     },
     "login": {
