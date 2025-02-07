@@ -1,0 +1,108 @@
+@use "../../styles/colors" as *;
+@use "../../styles/mixins" as *;
+
+.vertical-parameters-settings {
+  padding: 20px;
+  text-align: center;
+
+  .vertical-parameters-settings__title {
+    display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        margin-bottom: 16px;
+  }
+
+  .vertical-parameters-settings__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .vertical-parameters-settings__item {
+    width: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .vertical-parameters-settings__bar-container {
+      position: relative;
+      width: 18px;
+      height: 120px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+  
+    .vertical-parameters-settings__bar-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border-radius: 5px;
+    }
+  
+    .vertical-parameters-settings__bar-fill {
+      position: absolute;
+      width: 100%;
+      background: $irisVerticalGradient;
+      border-radius: 5px;
+    }
+  
+    .vertical-parameters-settings__input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .vertical-parameters-settings__description {
+    position: relative;
+
+    .vertical-parameters-settings__label {
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px;
+
+      .icon {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+
+        &.icon-piano {
+          font-size: 16px;
+        }
+
+        &.icon-electronic {
+          font-size: 24px;;
+        }
+      }
+    }
+
+    .vertical-parameters-settings__setting-name {
+      max-width: 1000px;
+      position: absolute;
+      background-color: $pureWhite;
+      opacity: 0;
+      padding: 4px 10px;
+      color: $midLightGray;
+      font-size: 14px;
+      box-shadow: $floatingBoxShadow;
+      border-radius: 20px;
+      transition: opacity 0.2s ease-in;
+      display: none;
+      z-index: 100;
+    }
+    .vertical-parameters-settings__label:hover~.vertical-parameters-settings__setting-name {
+      display: inline-block;
+      opacity: 1;
+    }
+  }
+}

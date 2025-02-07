@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../../context/LoadingContext/useLoading";
 
 const Callback = () => {
     const navigate = useNavigate();
+    const { setIsLoading } = useLoading();
 
     useEffect(() => {
+        setIsLoading(true);
+
         const urlParams = new URLSearchParams(window.location.search);
         const accessToken = urlParams.get("access_token");
         const refreshToken = urlParams.get("refresh_token");
@@ -15,14 +19,14 @@ const Callback = () => {
             localStorage.setItem("refresh_token", refreshToken);
             localStorage.setItem("token_expiration", (new Date().getTime() + parseInt(expiresIn) * 1000).toString());
 
-            window.location.href = "/";
+            navigate("/welcome");
         } else {
             alert("Error en la autenticación. Inténtalo de nuevo.");
             navigate("/login");
         }
-    }, [navigate]);
+    }, [navigate, setIsLoading]);
 
-    return <div>Procesando autenticación...</div>;
+    return <div>...</div>;
 };
 
 export default Callback;
