@@ -13,7 +13,7 @@ const UserImage: React.FC<UserImageProps> = ({ size = 'sm' }) => {
   if (!isAuthenticated) return null;
 
   return size === 'sm' ? (
-    <Link to="/profile" className="user-image user-image--sm">
+    <Link to="/my-tracks" className="user-image user-image--sm">
       <img src={userImage || '/default-avatar.png'} alt="User Profile" />
     </Link>
   ) : (

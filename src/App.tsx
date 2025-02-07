@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import TopMenu from "./components/TopMenu/TopMenu";
-import Profile from "./pages/Profile/Profile";
 import Login from "./pages/Login/Login";
 import Callback from "./pages/Login/Callback";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import MoodForm from "./pages/MoodForm/MoodForm";
 import ProtectedRoute from "./hooks/protectedRoute";
+import MyPlaylists from "./pages/MyPlaylists/MyPlaylists";
 import MyTracks from "./pages/MyTracks/MyTracks";
 import WelcomeScreen from "./pages/WelcomeScreen/WelcomeScreen";
 
@@ -46,9 +46,9 @@ const AppContent = () => {
             <Route path="/" element={<ProtectedRoute element={
                 <MoodForm onAnalyzeMood={handleAnalyzeMood} onGetSurprisePlaylist={handleGetSurprisePlaylist} />
             } />} />
-            <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/callback" element={<Callback />} />
+            <Route path="/my-playlists" element={<MyPlaylists />} />
             <Route path="/my-tracks" element={<MyTracks />} />
             <Route path="/welcome" element={<ProtectedRoute element={<WelcomeScreen />} />} /> {/* ✅ Nueva ruta */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

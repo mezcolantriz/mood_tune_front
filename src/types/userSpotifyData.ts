@@ -73,5 +73,6 @@ export type TrackResponse = {
         original_name: string;
         popularity: number;
         spotify_url: string;
+        picture: string;
     };
 };
