@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { SPOTIFY_LOGIN_URL } from "../../config";
 import { Link } from "react-router-dom";
+import { useLoading } from "../../context/LoadingContext/useLoading";
 
 import Button from "../../components/Button/Button";
 import Background from "../../components/Background/Background";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-
 import spotifyLogo from "../../assets/images/spotifyLogo.svg";
 
 import "./Login.scss";
 
 const Login = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        const accessToken = localStorage.getItem("access_token");
-        if (accessToken) {
-            navigate("/");
-        }
-    }, [navigate]);
+    const { setIsLoading } = useLoading();
 
     const handleLogin = () => {
         setIsLoading(true);
@@ -58,11 +48,6 @@ const Login = () => {
                     </span>
                 </p>
             </div>
-            {isLoading && (
-                <div className="login__loading">
-                    <LoadingSpinner />
-                </div>
-            )}
         </>
     );
 };

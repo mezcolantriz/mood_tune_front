@@ -1,4 +1,13 @@
 {
+    "loading": {
+        "loading": "Loading...",
+        "almost-here": "We're almost here...",
+        "little-more-time": "Just wait a little longer..."
+    },
+    "welcome": {
+        "welcome": "Welcome to MoodTune!",
+        "preparing": "We are preparing your playlists"
+    },
     "navbar": {
         "mood-form": "Get a playlist!",
         "playlists": "Your playlists",

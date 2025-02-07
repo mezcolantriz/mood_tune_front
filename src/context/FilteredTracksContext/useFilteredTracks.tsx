@@ -7,6 +7,7 @@ interface FilteredTracksContextType {
     favouriteTracks: TrackResponse[];
     loading: boolean;
     error: string | null;
+    requestsCompleted: boolean;
 }
 
 export const useFilteredTracks = (): FilteredTracksContextType => {

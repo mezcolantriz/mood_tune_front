@@ -1,4 +1,13 @@
 {
+    "loading": {
+        "loading": "Cargando...",
+        "almost-here": "Ya casi estamos...",
+        "little-more-time": "Solo un poco más..."
+    },
+    "welcome": {
+        "welcome": "¡Bienvenido a MoodTune!",
+        "preparing": "Estamos preparando tus playlists"
+    },
     "navbar": {
         "mood-form": "Recomiéndame una playlist!",
         "playlists": "Mis playlists",
@@ -11,8 +20,8 @@
     "login": {
         "slogan": "Tus moods,\n tus playlists.",
         "login-button": "Inicia sesión con Spotify",
-        "login-policy-prefix": "By logging in, you agree to our ",
-        "login-policy-link": "Privacy Policy"
+        "login-policy-prefix": "Al iniciar sesión, aceptas nuestra ",
+        "login-policy-link": "Política de Privacidad"
     },
     "mood-form": {
         "title": "¿Qué te gustaría escuchar hoy?",

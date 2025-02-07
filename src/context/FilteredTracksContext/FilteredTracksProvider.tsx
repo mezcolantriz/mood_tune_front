@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FilteredTracksContext } from "./FilteredTracksContext";
+import { useLoading } from "../LoadingContext/useLoading";
 
 import {
     getFilteredTopTracks,
@@ -9,51 +10,52 @@ import {
 } from "../../hooks/getUserSpotifyData";
 import { FavouriteTracksData, TrackResponse } from "../../types/userSpotifyData";
 
-interface FilteredTracksResponse {
-    filtered_tracks: TrackResponse[];
-}
-
 export const FilteredTracksProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { setIsLoading } = useLoading();
     const [topTracks, setTopTracks] = useState<TrackResponse[]>([]);
     const [favouriteTracks, setFavouriteTracks] = useState<TrackResponse[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [requestsCompleted, setRequestsCompleted] = useState(false);
+
+    const hasFetched = useRef(false);
 
     useEffect(() => {
+        if (hasFetched.current) return;
+        hasFetched.current = true;
+
         const fetchFilteredTracks = async () => {
             try {
-                setLoading(true);
-        
-                const userTopTracks = await getUserTopTracks();
-    
-                const userFavouriteTracks = await getUserFavouriteTracks();
-    
-                if (!userTopTracks.items || userTopTracks.items.length === 0) {
-                    console.warn("No hay canciones en getUserTopTracks().");
-                }
-    
-                if (!userFavouriteTracks || userFavouriteTracks.length === 0) {
-                    console.warn("No hay canciones en getUserFavouriteTracks().");
-                }
-    
+                setIsLoading(true);
+                setRequestsCompleted(false);
+
+                const [userTopTracks, userFavouriteTracks] = await Promise.all([
+                    getUserTopTracks(),
+                    getUserFavouriteTracks()
+                ]);
+
                 const favouriteTracksData: FavouriteTracksData = { tracks: userFavouriteTracks };
-                const topTracksData: FilteredTracksResponse = await getFilteredTopTracks(userTopTracks.items);
-                const favouriteTracksDataFiltered: FilteredTracksResponse = await getFilteredFavouriteTracks(favouriteTracksData);
+
+                const [topTracksData, favouriteTracksDataFiltered] = await Promise.all([
+                    getFilteredTopTracks(userTopTracks.items),
+                    getFilteredFavouriteTracks(favouriteTracksData)
+                ]);
 
                 setTopTracks(topTracksData.filtered_tracks ?? []);
                 setFavouriteTracks(favouriteTracksDataFiltered.filtered_tracks ?? []);
+
             } catch (err) {
                 setError(`Error fetching filtered tracks: ${err}`);
             } finally {
-                setLoading(false);
+                setIsLoading(false);
+                setRequestsCompleted(true);
             }
         };
-    
+
         fetchFilteredTracks();
-    }, []);
+    });
 
     return (
-        <FilteredTracksContext.Provider value={{ topTracks, favouriteTracks, loading, error }}>
+        <FilteredTracksContext.Provider value={{ topTracks, favouriteTracks, loading: false, error, requestsCompleted }}>
             {children}
         </FilteredTracksContext.Provider>
     );
