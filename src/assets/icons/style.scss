@@ -25,6 +25,61 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-piano {
+  &:before {
+    content: $icon-piano; 
+  }
+}
+.icon-bright {
+  &:before {
+    content: $icon-bright; 
+  }
+}
+.icon-clook {
+  &:before {
+    content: $icon-clook; 
+  }
+}
+.icon-cross {
+  &:before {
+    content: $icon-cross; 
+  }
+}
+.icon-dance {
+  &:before {
+    content: $icon-dance; 
+  }
+}
+.icon-demon {
+  &:before {
+    content: $icon-demon; 
+  }
+}
+.icon-heavy {
+  &:before {
+    content: $icon-heavy; 
+  }
+}
+.icon-leaf {
+  &:before {
+    content: $icon-leaf; 
+  }
+}
+.icon-sheep {
+  &:before {
+    content: $icon-sheep; 
+  }
+}
+.icon-sword {
+  &:before {
+    content: $icon-sword; 
+  }
+}
+.icon-voice {
+  &:before {
+    content: $icon-voice; 
+  }
+}
 .icon-acoustic {
   &:before {
     content: $icon-acoustic; 
@@ -290,4 +345,3 @@
     content: $icon-user-outlined-filled; 
   }
 }
-

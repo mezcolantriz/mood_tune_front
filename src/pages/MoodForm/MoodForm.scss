@@ -59,12 +59,19 @@
                     }
                 }
 
-                .mood-form__form-info {
-                    margin-top: 30px;
-                    color: $lightGray;
-                    font-size: 14px;
+                .mood-form__block-bottom {
+                    display: flex;
+                    .mood-form__form-info {
+                        margin-top: 30px;
+                        color: $lightGray;
+                        font-size: 14px;
+                        max-width: 300px;
 
-                    .icon { margin-right: 8px }
+                        .icon { margin-right: 8px }
+                    }
+                    .vertical-parameters-settings {
+                        flex-grow: 1;
+                    }
                 }
             }
         }

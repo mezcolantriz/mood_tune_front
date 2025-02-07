@@ -25,6 +25,7 @@
     },
     "mood-form": {
         "title": "¿Qué te gustaría escuchar hoy?",
+        "settings": "Tus ajustes",
         "preferences": "Tus preferencias",
         "preferences-info": "Estas preferencias no indican el valor que tendrá cada uno de estos parámetros a la hora de recomendarte una playlist, sino cómo de importante es que las canciones de la misma sean similares a lo que te gusta en cada uno de los parámetros. Para calcular estos datos analizamos las canciones que te gustan, pero puedes modificarlos antes de solicitar una recomendación.",
         "preferences-learn": "Aprende más sobre estos parámetros aquí",

@@ -4,6 +4,7 @@ import Button from "../../components/Button/Button";
 import { Textarea } from "../../components/Textarea/Textarea";
 import GenreFilter from "../../components/GenreFilter/GenreFilter";
 import ParametersSettings from "../../components/ParametersSettings/ParametersSettings";
+import VerticalParametersSettings from "../../components/VerticalParametersSettings/VerticalParametersSettings";
 import "./MoodForm.scss";
 
 interface MoodTuneFormProps {
@@ -46,10 +47,9 @@ const MoodForm = ({ onAnalyzeMood, onGetSurprisePlaylist }: MoodTuneFormProps) =
               <Button type="button" variant="secondary" onClick={onGetSurprisePlaylist} text={t("mood-form.get-something-like")} />
             </div>
 
-            <p className="mood-form__form-info">
-              <span className="icon icon-info"></span>
-              {t("mood-form.form-info")}
-            </p>
+            <div className="mood-form__block-bottom">
+              <VerticalParametersSettings />
+            </div>
           </div>
         </div>
       </form>

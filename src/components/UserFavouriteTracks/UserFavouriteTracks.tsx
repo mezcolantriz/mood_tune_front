@@ -2,6 +2,7 @@ import React from "react";
 import Error from "../Error/Error";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { TrackResponse } from "../../types/userSpotifyData";
+import "../../assets/icons/style.scss";
 import "./UserFavouriteTracks.scss";
 
 interface UserFavouriteTracksProps {

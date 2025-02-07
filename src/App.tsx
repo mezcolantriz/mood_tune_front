@@ -13,7 +13,10 @@ import { LoadingProvider } from "./context/LoadingContext/LoadingProvider";
 import { FilteredTracksProvider } from "./context/FilteredTracksContext/FilteredTracksProvider";
 import { useLoading } from "./context/LoadingContext/useLoading";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
-import "./styles/_global.scss";
+
+import "./assets/icons/style.scss";
+import "./styles/_global.scss"
+
 
 const handleAnalyzeMood = (moodText: string, genres?: string[]) => {
     console.log("Mood", moodText);
