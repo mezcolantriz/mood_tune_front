@@ -1,4 +1,13 @@
 {
+    "loading": {
+        "loading": "Loading...",
+        "almost-here": "We're almost here...",
+        "little-more-time": "Just wait a little longer..."
+    },
+    "welcome": {
+        "welcome": "Welcome to MoodTune!",
+        "preparing": "We are preparing your playlists"
+    },
     "navbar": {
         "mood-form": "Get a playlist!",
         "playlists": "Your playlists",
@@ -16,6 +25,7 @@
     },
     "mood-form": {
         "title": "What do you want to listen to today?",
+        "settings": "Your settings",
         "preferences": "Your preferences",
         "preferences-info": "These preferences do not determine the exact value of each parameter when recommending a playlist but rather indicate how important it is for the songs to be similar to your tastes in each aspect. To calculate these values, we analyze the songs you like, but you can modify them before requesting a recommendation.",
         "preferences-learn": "Learn more about these parameters here",

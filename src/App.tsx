@@ -1,43 +1,79 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import TopMenu from "./components/TopMenu/TopMenu";
-import Profile from "./pages/Profile/Profile";
 import Login from "./pages/Login/Login";
 import Callback from "./pages/Login/Callback";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import MoodForm from "./pages/MoodForm/MoodForm";
 import Moods from "./pages/Moods/Moods"; // Agregado
 import ProtectedRoute from "./hooks/protectedRoute";
-import "./styles/_global.scss";
+import MyPlaylists from "./pages/MyPlaylists/MyPlaylists";
+import MyTracks from "./pages/MyTracks/MyTracks";
+import WelcomeScreen from "./pages/WelcomeScreen/WelcomeScreen";
+
+import { LoadingProvider } from "./context/LoadingContext/LoadingProvider";
+import { FilteredTracksProvider } from "./context/FilteredTracksContext/FilteredTracksProvider";
+import { useLoading } from "./context/LoadingContext/useLoading";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+
+import "./assets/icons/style.scss";
+import "./styles/_global.scss"
+
+
+const handleAnalyzeMood = (moodText: string, genres?: string[]) => {
+    console.log("Mood", moodText);
+    if (genres && genres.length > 0) {
+        console.log("Géneros");
+    }
+};
+
+const handleGetSurprisePlaylist = () => {
+    // Aquí podrías hacer una petición a tu backend para obtener una playlist aleatoria.
+};
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
-  const hideTopMenu = location.pathname === "/login";
+    const { isLoading } = useLoading();
+    const location = useLocation();
+    const hideTopMenu = location.pathname === "/welcome" || location.pathname === "/login";
 
-  return (
-    <>
-      {!hideTopMenu && <TopMenu />}
-      {children}
-    </>
-  );
+    return (
+        <>
+            {isLoading && <LoadingSpinner />}
+            {!hideTopMenu && <TopMenu />}
+            {children}
+        </>
+    );
+};
+
+const AppContent = () => {
+    return (
+        <Routes>
+            <Route path="/" element={<ProtectedRoute element={
+                <MoodForm onAnalyzeMood={handleAnalyzeMood} onGetSurprisePlaylist={handleGetSurprisePlaylist} />
+            } />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/callback" element={<Callback />} />
+            <Route path="/my-playlists" element={<MyPlaylists />} />
+            <Route path="/my-tracks" element={<MyTracks />} />
+            <Route path="/welcome" element={<ProtectedRoute element={<WelcomeScreen />} />} /> {/* ✅ Nueva ruta */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/moods" element={<ProtectedRoute element={<Moods />} />} />
+
+        </Routes>
+    );
 };
 
 const App = () => {
-  return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<ProtectedRoute element={<MoodForm />} />} />
-          <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/callback" element={<Callback />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          
-          {/* Nueva Ruta para Moods */}
-          <Route path="/moods" element={<ProtectedRoute element={<Moods />} />} />
-        </Routes>
-      </Layout>
-    </Router>
-  );
+    return (
+        <Router>
+            <LoadingProvider>
+                <FilteredTracksProvider>
+                    <Layout>
+                        <AppContent />
+                    </Layout>
+                </FilteredTracksProvider>
+            </LoadingProvider>
+        </Router>
+    );
 };
 
 export default App;

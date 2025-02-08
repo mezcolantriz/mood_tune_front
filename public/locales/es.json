@@ -1,21 +1,31 @@
 {
+    "loading": {
+        "loading": "Cargando...",
+        "almost-here": "Ya casi estamos...",
+        "little-more-time": "Solo un poco más..."
+    },
+    "welcome": {
+        "welcome": "¡Bienvenido a MoodTune!",
+        "preparing": "Estamos preparando tus playlists"
+    },
     "navbar": {
         "mood-form": "Recomiéndame una playlist!",
-        "playlists": "Tus playlists",
-        "stats": "Tus estadísticas",
-        "moods": "Tus moods",
-        "fav-songs": "Tus canciones favoritas",
-        "fav-artists": "Artistas que sigues",
+        "playlists": "Mis playlists",
+        "stats": "Mis estadísticas",
+        "moods": "Mis moods",
+        "fav-songs": "Mis canciones favoritas",
+        "fav-artists": "Artistas que sigo",
         "log-out": "Cerrar sesión"
     },
     "login": {
         "slogan": "Tus moods,\n tus playlists.",
         "login-button": "Inicia sesión con Spotify",
-        "login-policy-prefix": "By logging in, you agree to our ",
-        "login-policy-link": "Privacy Policy"
+        "login-policy-prefix": "Al iniciar sesión, aceptas nuestra ",
+        "login-policy-link": "Política de Privacidad"
     },
     "mood-form": {
         "title": "¿Qué te gustaría escuchar hoy?",
+        "settings": "Tus ajustes",
         "preferences": "Tus preferencias",
         "preferences-info": "Estas preferencias no indican el valor que tendrá cada uno de estos parámetros a la hora de recomendarte una playlist, sino cómo de importante es que las canciones de la misma sean similares a lo que te gusta en cada uno de los parámetros. Para calcular estos datos analizamos las canciones que te gustan, pero puedes modificarlos antes de solicitar una recomendación.",
         "preferences-learn": "Aprende más sobre estos parámetros aquí",

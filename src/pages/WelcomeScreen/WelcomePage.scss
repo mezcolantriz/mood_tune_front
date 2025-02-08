@@ -1,0 +1,48 @@
+@use '../../styles/colors' as *;
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95); // Opcional: Efecto de zoom sutil
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.welcome-screen {
+    z-index: 1000;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+
+    .welcome-screen__logo {
+        width: 80px;
+        animation: fadeIn 2s ease-out 0.5s forwards;
+
+        img {
+            min-width: 100%;
+        }
+    }
+
+    .welcome-screen__title {
+        font-size: 60px;
+        font-weight: bold;
+        margin-bottom: 350px;
+        opacity: 0;
+        animation: fadeIn 2s ease-out 1s forwards;
+    }
+
+    .welcome-screen__text {
+        font-size: 24px;
+        color: $lightGray;
+        opacity: 0;
+        animation: fadeIn 2s ease-out 1.5s forwards;
+    }
+}

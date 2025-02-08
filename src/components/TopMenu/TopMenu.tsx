@@ -14,8 +14,8 @@ const TopMenu: React.FC = () => {
             <li className={`topmenu__link topmenu__main-link ${location.pathname === "/" ? "selected" : ""}`}>
                     <Link to="/">{t('navbar.mood-form')}</Link>
                 </li>
-                <li className={`topmenu__link ${location.pathname === "/playlists" ? "selected" : ""}`}>
-                    <Link to="/playlists">{t('navbar.playlists')}</Link>
+                <li className={`topmenu__link ${location.pathname === "/my-playlists" ? "selected" : ""}`}>
+                    <Link to="/my-playlists">{t('navbar.playlists')}</Link>
                 </li>
                 <li className={`topmenu__link ${location.pathname === "/stats" ? "selected" : ""}`}>
                     <Link to="/stats">{t('navbar.stats')}</Link>
@@ -23,8 +23,8 @@ const TopMenu: React.FC = () => {
                 <li className={`topmenu__link ${location.pathname === "/moods" ? "selected" : ""}`}>
                     <Link to="/moods">{t('navbar.moods')}</Link>
                 </li>
-                <li className={`topmenu__link ${location.pathname === "/fav-songs" ? "selected" : ""}`}>
-                    <Link to="/fav-songs">{t('navbar.fav-songs')}</Link>
+                <li className={`topmenu__link ${location.pathname === "/my-tracks" ? "selected" : ""}`}>
+                    <Link to="/my-tracks">{t('navbar.fav-songs')}</Link>
                 </li>
                 <li className={`topmenu__link fav-artists ${location.pathname === "/fav-artists" ? "selected" : ""}`}>
                     <Link to="/fav-artists">{t('navbar.fav-artists')}</Link>

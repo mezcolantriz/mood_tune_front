@@ -1,4 +1,6 @@
+import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
+import { useLoading } from "../../context/LoadingContext/useLoading";
 import "./LoadingSpinner.scss";
 
 interface LoadingSpinnerProps {
@@ -28,7 +30,10 @@ const icons = [
 ];
 
 const LoadingSpinner = ({ interval = 1000 }: LoadingSpinnerProps) => {
+    const { t } = useTranslation();
+    const { isLoading } = useLoading();
     const [currentIcon, setCurrentIcon] = useState<string>(icons[0]);
+    const [loadingMessage, setLoadingMessage] = useState(t('loading.loading'));
 
     useEffect(() => {
         const changeIcon = () => {
@@ -40,10 +45,31 @@ const LoadingSpinner = ({ interval = 1000 }: LoadingSpinnerProps) => {
         return () => clearInterval(iconInterval);
     }, [interval]);
 
+    useEffect(() => {
+        if (isLoading) {
+            const firstTimeout = setTimeout(() => {
+                setLoadingMessage(t('loading.almost-here'));
+            }, 5000);
+
+            const secondTimeout = setTimeout(() => {
+                setLoadingMessage(t('loading.little-more-time'));
+            }, 10000);
+
+            return () => {
+                clearTimeout(firstTimeout);
+                clearTimeout(secondTimeout);
+            };
+        } else {
+            setLoadingMessage(t('loading.loading'));
+        }
+    }, [isLoading, t]);
+
+    if (!isLoading) return null;
+
     return (
         <div className="loading-spinner">
             <i className={`icon ${currentIcon}`} />
-            Loading ...
+            {loadingMessage}
         </div>
     );
 };

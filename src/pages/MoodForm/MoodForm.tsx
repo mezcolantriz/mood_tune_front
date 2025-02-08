@@ -6,6 +6,7 @@ import GenreFilter from "../../components/GenreFilter/GenreFilter";
 import ParametersSettings from "../../components/ParametersSettings/ParametersSettings";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../config";
+import VerticalParametersSettings from "../../components/VerticalParametersSettings/VerticalParametersSettings";
 import "./MoodForm.scss";
 
 const MoodForm = () => {
@@ -65,10 +66,14 @@ const MoodForm = () => {
               <span className="mood-form__form-divisor">{t("mood-form.or")}</span>
               <Button type="button" variant="secondary" text={t("mood-form.get-something-like")} />
             </div>
+
+            <div className="mood-form__block-bottom">
+              <VerticalParametersSettings />
+            </div>
           </div>
         </div>
       </form>
-    </div>
+      </div>
   );
 };
 
