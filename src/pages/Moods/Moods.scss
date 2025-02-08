@@ -1,5 +1,5 @@
 .moods-container {
-    max-width: 900px;
+    max-width: 800px;
     margin: auto;
     background: #181818;
     color: white;
@@ -16,7 +16,7 @@
     color: #1db954;
   }
   
-  /* 🔹 Botón para crear la playlist en Spotify */
+  /* 🔹 Botón para crear la playlist */
   .create-playlist-button {
     width: 100%;
     padding: 12px;
@@ -30,7 +30,7 @@
     cursor: pointer;
   }
   
-  /* 🔹 Contenedor de cada canción */
+  /* 🔹 Canción */
   .mood-song {
     background: #282828;
     padding: 15px;
@@ -69,9 +69,15 @@
     border-radius: 5px;
   }
   
+  /* 🔹 Diseño del reproductor */
+  .spotify-player-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
   .spotify-player {
-    margin-top: 15px;
     border-radius: 10px;
-    width: 100%;
+    max-width: 100%;
   }
   

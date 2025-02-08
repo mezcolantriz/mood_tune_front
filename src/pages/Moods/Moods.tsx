@@ -7,12 +7,17 @@ const Moods = () => {
   const [showTranslation, setShowTranslation] = useState<{ [key: string]: boolean }>({});
   const [creatingPlaylist, setCreatingPlaylist] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [moodText, setMoodText] = useState<string>(""); // Para asegurar el nombre correcto
 
   useEffect(() => {
     const savedPlaylist = localStorage.getItem("moodPlaylist");
     if (savedPlaylist) {
       setPlaylist(JSON.parse(savedPlaylist) as RecommendedSong[]);
     }
+
+    // Asegurar que el nombre del mood sea el correcto al crear la playlist
+    const savedMoodText = localStorage.getItem("moodText") || "My Mood List";
+    setMoodText(savedMoodText);
   }, []);
 
   const toggleTranslation = (songId: string) => {
@@ -24,8 +29,7 @@ const Moods = () => {
     setErrorMessage("");
 
     try {
-      const userMoodInput = localStorage.getItem("moodText") || "My Mood List";
-      const userMood = `My Mood List: ${userMoodInput}`;
+      const userMood = `My Mood List: ${moodText}`; // Asegura que use el nombre correcto
       const trackUris = playlist.map(song => `spotify:track:${getSpotifyId(song.spotify_url)}`);
       const accessToken = localStorage.getItem("access_token");
 
@@ -126,23 +130,30 @@ const Moods = () => {
                 <p className="artist-name">{song.artist_name}</p>
               </div>
 
+              {/* 🔹 Mostrar solo UNA versión de la letra */}
               <p className="lyrics">
-                {showTranslation[song.id] ? song.translated_lyrics : song.processed_lyrics}
+                {showTranslation[song.id]
+                  ? `${song.translated_lyrics.slice(0, 499)}...` // Añadir "..." para indicar que sigue
+                  : `${song.processed_lyrics.slice(0, 499)}...`}
               </p>
 
+              {/* 🔹 Botón para alternar traducción */}
               <button className="translate-button" onClick={() => toggleTranslation(song.id)}>
                 {showTranslation[song.id] ? "Ver en Inglés" : "Traducir Letra"}
               </button>
 
-              <iframe
-                src={`https://open.spotify.com/embed/track/${getSpotifyId(song.spotify_url)}`}
-                width="100%"
-                height="80"
-                frameBorder="0"
-                allowTransparency={true}
-                allow="encrypted-media"
-                className="spotify-player"
-              ></iframe>
+              {/* 🔹 Mejor diseño del reproductor de Spotify */}
+              <div className="spotify-player-container">
+                <iframe
+                  src={`https://open.spotify.com/embed/track/${getSpotifyId(song.spotify_url)}`}
+                  width="80%"  // Reducir el ancho
+                  height="80"
+                  frameBorder="0"
+                  allowTransparency={true}
+                  allow="encrypted-media"
+                  className="spotify-player"
+                ></iframe>
+              </div>
             </li>
           ))}
         </ul>
@@ -153,6 +164,7 @@ const Moods = () => {
   );
 };
 
+// 🔹 Extraer ID de la canción de la URL de Spotify
 const getSpotifyId = (url: string): string => {
   const match = url.match(/track\/(\w+)/);
   return match ? match[1] : "";
