@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Callback from "./pages/Login/Callback";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import MoodForm from "./pages/MoodForm/MoodForm";
+import Moods from "./pages/Moods/Moods"; // Agregado
 import ProtectedRoute from "./hooks/protectedRoute";
 import MyPlaylists from "./pages/MyPlaylists/MyPlaylists";
 import MyTracks from "./pages/MyTracks/MyTracks";
@@ -55,6 +56,8 @@ const AppContent = () => {
             <Route path="/my-tracks" element={<MyTracks />} />
             <Route path="/welcome" element={<ProtectedRoute element={<WelcomeScreen />} />} /> {/* ✅ Nueva ruta */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/moods" element={<ProtectedRoute element={<Moods />} />} />
+
         </Routes>
     );
 };

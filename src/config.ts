@@ -8,3 +8,4 @@ export const SPOTIFY_PLAYLISTS_URL = `${API_URL}/auth/playlists`;
 export const SPOTIFY_TOP_TRACKS_URL = `${API_URL}/auth/top-tracks`;
 export const SPOTIFY_TOP_ARTISTS_URL = `${API_URL}/auth/top-artists`;
 export const SPOTIFY_FAVORITE_TRACKS_URL = `${API_URL}/auth/favorite-tracks`;
+export const MOOD_SONGS_URL = `${API_URL}/auth/songs/mood`;
