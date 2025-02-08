@@ -1,0 +1,77 @@
+.moods-container {
+    max-width: 900px;
+    margin: auto;
+    background: #181818;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .moods-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #1db954;
+  }
+  
+  /* 🔹 Botón para crear la playlist en Spotify */
+  .create-playlist-button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #1db954;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  /* 🔹 Contenedor de cada canción */
+  .mood-song {
+    background: #282828;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* 🔹 Encabezado de la canción */
+  .song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .song-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .artist-name {
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  /* 🔹 Botón de traducción */
+  .translate-button {
+    background: #1db954;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .spotify-player {
+    margin-top: 15px;
+    border-radius: 10px;
+    width: 100%;
+  }
+  
