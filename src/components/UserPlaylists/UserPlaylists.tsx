@@ -31,11 +31,11 @@ const UserPlaylists: React.FC = () => {
                                     alt={playlist.name} 
                                     className="user-playlists__image"
                                 />
+                                <div className="user-playlists__overlay"/>
 
                                 <div className="user-playlists__data">
                                     <h4 className="user-playlists__title">{playlist.name}</h4>
                                     <div className="user-playlists__info">
-                                        <span className="user-playlists__description">{playlist.description}</span>
                                         <span className="user-playlists__songs-num">{playlist.tracks.total} songs</span>
                                     </div>
                                 </div>

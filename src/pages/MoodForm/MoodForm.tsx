@@ -14,37 +14,38 @@ const MoodForm = () => {
   const [moodText, setMoodText] = useState("");
   const [selectedGenres, setSelectedGenres] = useState<string[]>(["all genres"]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Para redirigir a /moods
+  const navigate = useNavigate(); // 🔹 Para redirigir a /moods
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (moodText.trim() === "") return;
-
+  
     setLoading(true);
     try {
       const genresToSend = selectedGenres.includes("all genres") ? [] : selectedGenres;
-
+  
       // 📌 Hacer la petición al backend para obtener las canciones recomendadas
       const response = await fetch(`${API_URL}/songs/mood`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ moodText, genres: genresToSend }),
       });
-
+  
       if (!response.ok) throw new Error("Error al obtener la playlist");
-
+  
       const recommendedSongs = await response.json();
       localStorage.setItem("moodPlaylist", JSON.stringify(recommendedSongs));
-
+      localStorage.setItem("moodText", moodText); // 💡 Solo guardarlo aquí
+  
       navigate("/moods"); // Redirigir a la página de moods en la misma pestaña
-
+  
     } catch (error) {
       console.error("Error al obtener las recomendaciones:", error);
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="mood-form">
       <form className="mood-form__form-body" onSubmit={handleSubmit}>
@@ -73,7 +74,7 @@ const MoodForm = () => {
           </div>
         </div>
       </form>
-      </div>
+    </div>
   );
 };
 

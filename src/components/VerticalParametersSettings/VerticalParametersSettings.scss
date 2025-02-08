@@ -2,26 +2,31 @@
 @use "../../styles/mixins" as *;
 
 .vertical-parameters-settings {
+  border: 2px solid $mediumGray;
+  border-radius: 20px;
   padding: 20px;
   text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 
   .vertical-parameters-settings__title {
-    display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 16px;
-        margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    margin-bottom: 16px;
   }
 
   .vertical-parameters-settings__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 15px;
     flex-wrap: wrap;
   }
 
   .vertical-parameters-settings__item {
-    width: 45px;
+    width: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,6 +88,12 @@
         &.icon-electronic {
           font-size: 24px;;
         }
+      }
+
+      .vertical-parameters-settings__percentage {
+        font-size: 12px;
+        color: $lightGray;
+        margin-top: 5px;
       }
     }
 

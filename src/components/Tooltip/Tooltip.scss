@@ -20,6 +20,8 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        text-align: left;
+        z-index: 800;
 
         .tooltip__link {
             color: $pinkBlush;
