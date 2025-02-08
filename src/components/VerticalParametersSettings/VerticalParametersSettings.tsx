@@ -19,45 +19,63 @@ const SETTINGS = [
 ];
 
 const SETTINGS_ICONS: { [key: string]: string } = {
-    male: "icon-voice",
-    danceable: "icon-dance",
-    tonal: "icon-music",
-    timbre_bright: "icon-bright",
-    instrumental: "icon-piano",
-    mood_acoustic: "icon-acoustic",
-    mood_aggressive: "icon-sword",
-    mood_electronic: "icon-electronic",
-    mood_happy: "icon-happy",
-    mood_party: "icon-party",
-    mood_relaxed: "icon-leaf",
-    mood_sad: "icon-cry",
+  male: "icon-voice",
+  danceable: "icon-dance",
+  tonal: "icon-music",
+  timbre_bright: "icon-bright",
+  instrumental: "icon-piano",
+  mood_acoustic: "icon-acoustic",
+  mood_aggressive: "icon-sword",
+  mood_electronic: "icon-electronic",
+  mood_happy: "icon-happy",
+  mood_party: "icon-party",
+  mood_relaxed: "icon-leaf",
+  mood_sad: "icon-cry",
 };
-  
+
+const API_URL = "http://localhost:5000/users/user/preferences";
+
 const VerticalParametersSettings = () => {
   const { t } = useTranslation();
   const [preferences, setPreferences] = useState<{ [key: string]: number }>({});
   const [isDragging, setIsDragging] = useState(false);
   const [currentSetting, setCurrentSetting] = useState<string | null>(null);
 
+  // 🔹 Cargar preferencias desde la API y localStorage
   useEffect(() => {
-    const savedPreferences = localStorage.getItem("moodtune_settings");
-    if (savedPreferences) {
-      setPreferences(JSON.parse(savedPreferences));
-    } else {
-      const defaultPreferences = SETTINGS.reduce((acc, setting) => {
-        acc[setting] = 50;
-        return acc;
-      }, {} as { [key: string]: number });
-      setPreferences(defaultPreferences);
-    }
+    const fetchPreferences = async () => {
+      try {
+        const savedPreferences = localStorage.getItem("moodtune_settings");
+
+        if (savedPreferences) {
+          setPreferences(JSON.parse(savedPreferences));
+          return; // ⚡ Si hay datos en localStorage, no llamamos a la API
+        }
+
+        const response = await fetch(API_URL, { credentials: "include" });
+        if (!response.ok) throw new Error("Error al obtener preferencias");
+
+        const data = await response.json();
+        if (data.user_preferences) {
+          setPreferences(data.user_preferences);
+          localStorage.setItem("moodtune_settings", JSON.stringify(data.user_preferences));
+        }
+      } catch (error) {
+        console.error("Error obteniendo preferencias:", error);
+      }
+    };
+
+    fetchPreferences();
   }, []);
 
+  // 🔹 Guardar automáticamente en localStorage cuando cambien las preferencias
   useEffect(() => {
     if (Object.keys(preferences).length > 0) {
       localStorage.setItem("moodtune_settings", JSON.stringify(preferences));
     }
   }, [preferences]);
 
+  // 🔹 Actualizar valores al modificar sliders
   const smoothSetValue = (setting: string, newValue: number) => {
     requestAnimationFrame(() => {
       setPreferences((prev) => ({
@@ -67,6 +85,7 @@ const VerticalParametersSettings = () => {
     });
   };
 
+  // 🔹 Manejo de eventos para sliders
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>, setting: string) => {
     setIsDragging(true);
     setCurrentSetting(setting);
@@ -107,6 +126,15 @@ const VerticalParametersSettings = () => {
 
   return (
     <div className="vertical-parameters-settings">
+      <h2 className="vertical-parameters-settings__title">
+        {t("mood-form.settings")}
+        <Tooltip
+          text={t("mood-form.preferences-info")}
+          link={{ href: "/preferences-info", text: t("mood-form.preferences-learn") }}
+        >
+          <span className="icon icon-question" />
+        </Tooltip>
+      </h2>
       <div className="vertical-parameters-settings__container">
         {SETTINGS.map((setting) => (
           <div key={setting} className="vertical-parameters-settings__item">
@@ -119,7 +147,7 @@ const VerticalParametersSettings = () => {
 
               <div
                 className="vertical-parameters-settings__bar-fill"
-                style={{ height: `${preferences[setting]}%` }}
+                style={{ height: `${preferences[setting] || 50}%` }}
               ></div>
 
               <input
@@ -133,24 +161,15 @@ const VerticalParametersSettings = () => {
             </div>
 
             <div className="vertical-parameters-settings__description">
-                <label className="vertical-parameters-settings__label">
-                    <span className={`icon ${SETTINGS_ICONS[setting]}`}></span>
-                    <span className="vertical-parameters-settings__percentage">{preferences[setting]}%</span>
-                </label>
-                <span className="vertical-parameters-settings__setting-name">{t(`settings.${setting}`)}</span>
+              <label className="vertical-parameters-settings__label">
+                <span className={`icon ${SETTINGS_ICONS[setting]}`}></span>
+                <span className="vertical-parameters-settings__percentage">{preferences[setting] || 50}%</span>
+              </label>
+              <span className="vertical-parameters-settings__setting-name">{t(`settings.${setting}`)}</span>
             </div>
           </div>
         ))}
       </div>
-      <h2 className="vertical-parameters-settings__title">
-        {t("mood-form.settings")}
-        <Tooltip
-          text={t("mood-form.preferences-info")}
-          link={{ href: "/preferences-info", text: t("mood-form.preferences-learn") }}
-        >
-          <span className="icon icon-question" />
-        </Tooltip>
-      </h2>
     </div>
   );
 };

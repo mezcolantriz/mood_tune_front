@@ -50,21 +50,21 @@ export interface FavouriteTracksData {
 
 export type TrackResponse = {
     dataset_data?: {
-        artist_name: string;
-        combined_genres: string;
-        danceable: string;
-        male: string;
-        mood_acoustic: string;
-        mood_aggressive: string;
-        mood_electronic: string;
-        mood_happy: string;
-        mood_party: string;
-        mood_relaxed: string;
-        mood_sad: string;
         recording_id: string;
         song_name: string;
-        timbre_bright: string;
-        tonal: string;
+        artist_name: string;
+        combined_genres: string;
+        danceable: number;
+        male: number;
+        mood_acoustic: number;
+        mood_aggressive: number;
+        mood_electronic: number;
+        mood_happy: number;
+        mood_party: number;
+        mood_relaxed: number;
+        mood_sad: number;
+        timbre_bright: number;
+        tonal: number;
     };
     spotify_data?: {
         album: string;
