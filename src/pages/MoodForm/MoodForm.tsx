@@ -4,27 +4,48 @@ import Button from "../../components/Button/Button";
 import { Textarea } from "../../components/Textarea/Textarea";
 import GenreFilter from "../../components/GenreFilter/GenreFilter";
 import ParametersSettings from "../../components/ParametersSettings/ParametersSettings";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 import VerticalParametersSettings from "../../components/VerticalParametersSettings/VerticalParametersSettings";
 import "./MoodForm.scss";
 
-interface MoodTuneFormProps {
-  onAnalyzeMood: (moodText: string, genres?: string[]) => void;
-  onGetSurprisePlaylist: () => void;
-}
-
-const MoodForm = ({ onAnalyzeMood, onGetSurprisePlaylist }: MoodTuneFormProps) => {
+const MoodForm = () => {
   const { t } = useTranslation();
   const [moodText, setMoodText] = useState("");
   const [selectedGenres, setSelectedGenres] = useState<string[]>(["all genres"]);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // 🔹 Para redirigir a /moods
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (moodText.trim() !== "") {
+    if (moodText.trim() === "") return;
+  
+    setLoading(true);
+    try {
       const genresToSend = selectedGenres.includes("all genres") ? [] : selectedGenres;
-      onAnalyzeMood(moodText, genresToSend);
+  
+      // 📌 Hacer la petición al backend para obtener las canciones recomendadas
+      const response = await fetch(`${API_URL}/songs/mood`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ moodText, genres: genresToSend }),
+      });
+  
+      if (!response.ok) throw new Error("Error al obtener la playlist");
+  
+      const recommendedSongs = await response.json();
+      localStorage.setItem("moodPlaylist", JSON.stringify(recommendedSongs));
+      localStorage.setItem("moodText", moodText); // 💡 Solo guardarlo aquí
+  
+      navigate("/moods"); // Redirigir a la página de moods en la misma pestaña
+  
+    } catch (error) {
+      console.error("Error al obtener las recomendaciones:", error);
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   return (
     <div className="mood-form">
       <form className="mood-form__form-body" onSubmit={handleSubmit}>
@@ -42,9 +63,9 @@ const MoodForm = ({ onAnalyzeMood, onGetSurprisePlaylist }: MoodTuneFormProps) =
             />
 
             <div className="mood-form__form-buttons">
-              <Button type="submit" variant="primary" text={t("mood-form.get-playlist-mood")} />
+              <Button type="submit" variant="primary" text={loading ? "Cargando..." : t("mood-form.get-playlist-mood")} />
               <span className="mood-form__form-divisor">{t("mood-form.or")}</span>
-              <Button type="button" variant="secondary" onClick={onGetSurprisePlaylist} text={t("mood-form.get-something-like")} />
+              <Button type="button" variant="secondary" text={t("mood-form.get-something-like")} />
             </div>
 
             <div className="mood-form__block-bottom">
@@ -53,7 +74,7 @@ const MoodForm = ({ onAnalyzeMood, onGetSurprisePlaylist }: MoodTuneFormProps) =
           </div>
         </div>
       </form>
-      </div>
+    </div>
   );
 };
 
