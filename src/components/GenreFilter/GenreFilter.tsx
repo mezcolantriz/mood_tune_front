@@ -1,26 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { genreGroups } from "../../config";
 import "./GenreFilter.scss";
 
 type GenreFilterProps = {
   selectedGenres: string[];
   setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
-};
-
-const genreGroups: Record<string, string[]> = {
-  "all genres": [],
-  "rock": ["rock", "hard", "heavy", "alternative", "progressive", "classic", "indie", "postrock", "garage", "grunge", "stoner"],
-  "pop": ["pop", "synthpop", "electropop", "dancepop", "indiepop", "powerpop", "britpop"],
-  "indie": ["indie", "indiepop", "indietronica", "folkrock", "lofi", "shoegaze"],
-  "metal": ["metal", "metalcore", "death", "black", "thrash", "doom", "grindcore", "numetal", "symphonic", "sludge", "gothic"],
-  "hip-hop / rap": ["hiphop", "rap", "trap", "gangsta", "crunk", "grime", "freestyle"],
-  "electronic": ["electronic", "electro", "house", "techno", "trance", "dubstep", "synthwave", "dnb", "industrial", "idm"],
-  "alternative": ["alternative", "experimental", "psychedelic", "postpunk", "newwave", "darkwave"],
-  "punk": ["punk", "hardcore", "posthardcore", "screamo", "emo"],
-  "jazz": ["jazz", "blues", "swing", "fusion", "bigband", "bebop"],
-  "r&b / soul": ["rnb", "soul", "neosoul", "funk", "motown", "gospel"],
-  "latin": ["latin", "reggaeton", "salsa", "bachata", "tango", "mariachi"],
-  "reggae": ["reggae", "roots", "dancehall", "dub"],
-  "funk / disco": ["funk", "disco", "boogie", "groove", "soulful", "rhythm"]
 };
 
 export default function GenreFilter({ selectedGenres, setSelectedGenres }: GenreFilterProps) {

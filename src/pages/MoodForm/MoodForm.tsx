@@ -5,7 +5,7 @@ import { Textarea } from "../../components/Textarea/Textarea";
 import GenreFilter from "../../components/GenreFilter/GenreFilter";
 import ParametersSettings from "../../components/ParametersSettings/ParametersSettings";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../../config";
+import { API_URL, reducedGenreGroups } from "../../config";
 import VerticalParametersSettings from "../../components/VerticalParametersSettings/VerticalParametersSettings";
 import "./MoodForm.scss";
 
@@ -22,13 +22,21 @@ const MoodForm = () => {
   
     setLoading(true);
     try {
-      const genresToSend = selectedGenres.includes("all genres") ? [] : selectedGenres;
+      // Si el usuario seleccionó algún género distinto de "all genres", obtenemos las palabras clave.
+      let additionalKeywords: string[] = [];
+      if (!selectedGenres.includes("all genres")) {
+        additionalKeywords = selectedGenres.flatMap(genre => reducedGenreGroups[genre] || []);
+      }
   
-      // 📌 Hacer la petición al backend para obtener las canciones recomendadas
+      // Concatenamos las palabras clave al texto del usuario
+      const finalMoodText = additionalKeywords.length > 0 
+        ? `${moodText} ${additionalKeywords.join(" ")}`
+        : moodText;
+  
       const response = await fetch(`${API_URL}/songs/mood`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ moodText, genres: genresToSend }),
+        body: JSON.stringify({ moodText: finalMoodText }),
       });
   
       if (!response.ok) throw new Error("Error al obtener la playlist");
@@ -44,7 +52,7 @@ const MoodForm = () => {
     } finally {
       setLoading(false);
     }
-  };
+  };  
   
   return (
     <div className="mood-form">
