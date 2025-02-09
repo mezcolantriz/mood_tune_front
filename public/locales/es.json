@@ -23,6 +23,48 @@
         "login-policy-prefix": "Al iniciar sesión, aceptas nuestra ",
         "login-policy-link": "Política de Privacidad"
     },
+    "mood-form": {
+        "title": "¿Qué te gustaría escuchar hoy?",
+        "settings": "Tus ajustes",
+        "preferences": "Tus preferencias",
+        "preferences-info": "Estos ajustes no indican el valor que tendrá cada uno de estos parámetros a la hora de recomendarte una playlist, sino cómo de importante es que las canciones de la misma sean similares a lo que te gusta en cada uno de los parámetros. Para calcular estos datos analizamos las canciones que te gustan, pero puedes modificarlos antes de solicitar una recomendación.",
+        "preferences-learn": "Aprende más sobre estos parámetros aquí",
+        "textarea-placeholder": "Cuéntanos cómo te sientes",
+        "get-playlist-mood": "Dame una playlist basada en mi mood",
+        "get-something-like": "Simplemente dame algo que me guste",
+        "or": "o",
+        "form-info": "Nuestra aplicación usa dos modelos diferentes, con los cuales podrás obtener resultados basados en tus gustos y/o en tu estado de ánimo actual. Cada modelo tiene sus propios requisitos y, dado que la opción que recomienda una playlist según tu estado de ánimo combina ambos modelos, es posible que sea un poco más lenta que la otra opción. ¡Te animamos a probar ambas opciones para encontrar los resultados que mejor se adapten a lo que necesitas en cada momento!"
+    },
+    "genres": {
+        "all genres": "Cualquier género",
+        "rock": "Rock",
+        "pop": "Pop",
+        "indie": "Indie",
+        "metal": "Metal",
+        "hip-hop / rap": "Hip-Hop / Rap",
+        "electronic": "Electrónica",
+        "alternative": "Alternativa",
+        "punk": "Punk",
+        "jazz": "Jazz",
+        "r&b / soul": "R&B / Soul",
+        "latin": "Latino",
+        "reggae": "Reggae",
+        "funk / disco": "Funk / Disco"
+    },
+    "settings": {
+        "male": "Voz Masculina/Femenina",
+        "danceable": "Bailabilidad",
+        "tonal": "Tonalidad",
+        "timbre_bright": "Brillo",
+        "instrumental": "Instrumental",
+        "mood_acoustic": "Modo Acústico",
+        "mood_aggressive": "Modo Agresivo",
+        "mood_electronic": "Modo Electrónico",
+        "mood_happy": "Modo Feliz",
+        "mood_party": "Modo Fiesta",
+        "mood_relaxed": "Modo Relajado",
+        "mood_sad": "Modo Triste"
+    },
     "privacy-policy": {
         "title": "Política de Privacidad y Cookies de MoodTune",
         "effective-date": "Fecha de entrada en vigor: ",
