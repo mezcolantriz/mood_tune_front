@@ -14,7 +14,7 @@
             height: 150px;
             border-radius: 100%;
             overflow: hidden;
-            transition: transform 0.2s ease-in;
+            transition: transform 0.3s ease-in;
 
             .followed-artists__link {
                 position: relative;
@@ -41,7 +41,7 @@
                 padding: 12px;
                 text-align: center;
                 opacity: 0;
-                transition: opacity 0.2s ease-in;
+                transition: opacity 0.3s ease-in;
             }
 
             &:hover {

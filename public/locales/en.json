@@ -15,7 +15,7 @@
         "moods": "Your moods",
         "fav-songs": "Your favourite songs",
         "fav-artists": "Your followed artists",
-        "log-out": "Log out"
+        "logout": "Log out"
     },
     "login": {
         "slogan": "Your moods,\n your playlists.",
@@ -23,60 +23,43 @@
         "login-policy-prefix": "By logging in, you agree to our ",
         "login-policy-link": "Privacy Policy"
     },
-    "mood-form": {
-        "title": "What do you want to listen to today?",
-        "settings": "Your settings",
-        "preferences": "Your preferences",
-        "preferences-info": "These settings do not determine the exact value of each parameter when recommending a playlist but rather indicate how important it is for the songs to be similar to your tastes in each aspect. To calculate these values, we analyze the songs you like, but you can modify them before requesting a recommendation.",
-        "preferences-learn": "Learn more about these parameters here",
-        "textarea-placeholder": "Tell us how do you feel",
-        "get-playlist-mood": "Get a playlist based on my mood",
-        "get-something-like": "Just give me something I like",
-        "or": "or",
-        "form-info": "Our application uses two different models, allowing you to get results based on your preferences and/or your current mood. Each model has its own requirements, and since the option that recommends a playlist based on your mood combines both models, it may be slightly slower than the other option. We encourage you to try both options to find the results that best suit your needs at any given moment!"
-    },
-    "genres": {
-        "all genres": "Any genre",
-        "rock": "Rock",
-        "pop": "Pop",
-        "indie": "Indie",
-        "metal": "Metal",
-        "hip-hop / rap": "Hip-Hop / Rap",
-        "electronic": "Electronic",
-        "alternative": "Alternative",
-        "punk": "Punk",
-        "jazz": "Jazz",
-        "r&b / soul": "R&B / Soul",
-        "latin": "Latin",
-        "reggae": "Reggae",
-        "funk / disco": "Funk / Disco"
-    },
-    "preferences": {
-        "male": "Male or female voice",
-        "danceable": "Danceable",
-        "tonal": "Tonal",
-        "timbre_bright": "Timbre brightness",
-        "instrumental": "Instrumental",
-        "mood_acoustic": "Acoustic",
-        "mood_aggressive": "Aggressive",
-        "mood_electronic": "Electronic",
-        "mood_happy": "Happy",
-        "mood_party": "Party",
-        "mood_relaxed": "Relaxed",
-        "mood_sad": "Sad"
-    },
-    "settings": {
-        "male": "Voice",
-        "danceable": "Danceable",
-        "tonal": "Tonal",
-        "timbre_bright": "Timbre",
-        "instrumental": "Instrumental",
-        "mood_acoustic": "Acoustic",
-        "mood_aggressive": "Aggressive",
-        "mood_electronic": "Electronic",
-        "mood_happy": "Happy",
-        "mood_party": "Party",
-        "mood_relaxed": "Relaxed",
-        "mood_sad": "Sad"
-    }      
+    "privacy-policy": {
+        "title": "MoodTune Privacy and Cookies Policy",
+        "effective-date": "Effective Date: ",
+        "introduction-title": "1. Introduction",
+        "introduction": "Welcome to MoodTune. Your privacy is important to us, and we are committed to protecting the personal information you share with us. This policy explains how we collect, use, store, and protect your data when using our service.",
+        "data-we-collect-title": "2. Data We Collect",
+        "data-we-collect": "When you use MoodTune, we collect and store information about your musical preferences to provide personalized recommendations. The collected data includes:",
+        "data-items": [
+            "Playlists saved in your Spotify account.",
+            "Favorite songs and artists.",
+            "Other musical information accessible through Spotify (based on granted permissions)."
+        ],
+        "use-of-data-title": "3. Use of Data",
+        "use-of-data": "The collected data is used exclusively to enhance your experience on MoodTune by providing personalized playlist recommendations based on machine learning. We do not share, sell, or transfer your information to third parties.",
+        "storage-and-security-title": "4. Storage and Security",
+        "storage-and-security": "The collected data is stored in:",
+        "storage-items": [
+            "Cookies: We use cookies to improve your experience and keep your session active.",
+            "Database: We store information about your musical preferences to improve future recommendations."
+        ],
+        "cookies-title": "5. Use of Cookies",
+        "cookies": "MoodTune uses cookies to enhance the user experience. The cookies we use include:",
+        "cookies-items": [
+            "Essential cookies: Necessary for the application's operation.",
+            "Personalization cookies: Store information about your preferences to offer a better experience."
+        ],
+        "your-rights-title": "6. Your Rights",
+        "your-rights": "You have the right to:",
+        "rights-items": [
+            "Access the data we collect about you.",
+            "Request the deletion of your stored data.",
+            "Revoke MoodTune's access to your Spotify account at any time from your Spotify account settings."
+        ],
+        "policy-changes-title": "7. Policy Changes",
+        "policy-changes": "We may update this privacy and cookies policy occasionally. Any significant changes will be notified through the application or via email.",
+        "contact-title": "8. Contact",
+        "contact": "If you have any questions about our privacy policy, you can write to us at support@moodtune.com",
+        "acceptance": "By using MoodTune, you accept the terms of this privacy and cookies policy."
+    }
 }

@@ -14,10 +14,13 @@ const Callback = () => {
         const refreshToken = urlParams.get("refresh_token");
         const expiresIn = urlParams.get("expires_in");
 
-        if (accessToken && refreshToken && expiresIn) {
+        if (accessToken && expiresIn) {
             localStorage.setItem("access_token", accessToken);
-            localStorage.setItem("refresh_token", refreshToken);
             localStorage.setItem("token_expiration", (new Date().getTime() + parseInt(expiresIn) * 1000).toString());
+
+            if (refreshToken) {
+                localStorage.setItem("refresh_token", refreshToken);
+            }
 
             navigate("/welcome");
         } else {
@@ -26,7 +29,7 @@ const Callback = () => {
         }
     }, [navigate, setIsLoading]);
 
-    return <div>...</div>;
+    return <div>Autenticando...</div>;
 };
 
 export default Callback;

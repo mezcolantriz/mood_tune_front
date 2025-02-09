@@ -129,7 +129,7 @@ const VerticalParametersSettings = () => {
       <h2 className="vertical-parameters-settings__title">
         {t("mood-form.settings")}
         <Tooltip
-          text={t("mood-form.preferences-info")}
+          text={t("mood-form.settings-info")}
           link={{ href: "/preferences-info", text: t("mood-form.preferences-learn") }}
         >
           <span className="icon icon-question" />

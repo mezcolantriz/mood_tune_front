@@ -8,30 +8,47 @@ export function useAuth() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const checkToken = () => {
+            const accessToken = localStorage.getItem("access_token");
+            const tokenExpiration = localStorage.getItem("token_expiration");
+
+            if (!accessToken || !tokenExpiration || new Date().getTime() > parseInt(tokenExpiration)) {
+                console.warn("⚠ Token expirado o inexistente. Redirigiendo a login...");
+                localStorage.removeItem("access_token");
+                localStorage.removeItem("token_expiration");
+                setLoading(false);
+                setUser(null);
+                return;
+            }
+
+            fetchUser(accessToken);
+        };
+
+        const fetchUser = async (token: string) => {
             try {
-                const response = await makeRequestWithToken(SPOTIFY_ME_URL);
+                const response = await makeRequestWithToken(SPOTIFY_ME_URL, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
 
                 if (!response.ok) {
                     throw new Error(`Error on request: ${response.status}`);
                 }
 
                 const data: UserProfile = await response.json();
-
-                if (data && typeof data === "object") {
-                    setUser(data);
-                } else {
-                    throw new Error("❌ Invalid user data");
-                }
+                setUser(data);
             } catch (error) {
-                console.error("❌ Error :", error);
+                console.error("Error :", error);
                 setUser(null);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchUser();
+        checkToken();
     }, []);
 
     return { user, loading };

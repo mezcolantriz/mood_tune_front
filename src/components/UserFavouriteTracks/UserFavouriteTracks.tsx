@@ -2,7 +2,6 @@ import React from "react";
 import Error from "../Error/Error";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { TrackResponse } from "../../types/userSpotifyData";
-import "../../assets/icons/style.scss";
 import "./UserFavouriteTracks.scss";
 
 interface UserFavouriteTracksProps {
@@ -25,12 +24,13 @@ const UserFavouriteTracks: React.FC<UserFavouriteTracksProps> = ({ favouriteTrac
                 <ul className="favourite-tracks__list">
                     {favouriteTracks.map((trackData) => {
                         const track = trackData.spotify_data;
+                        const dataset = trackData.dataset_data;
 
-                        return track ? (
+                        return track && dataset ? (
                             <li key={track.spotify_url || `track-${Math.random()}`} className="favourite-tracks__item">
                                 <div className="favourite-tracks__image">
                                     <img
-                                        src={trackData.spotify_data?.picture}
+                                        src={track.picture}
                                         alt={track.original_name || "Unknown track"}
                                         className="favourite-tracks__image-image"
                                     />
@@ -47,6 +47,41 @@ const UserFavouriteTracks: React.FC<UserFavouriteTracksProps> = ({ favouriteTrac
                                     
                                     <div className="favourite-tracks__details">
                                         ⏱ {(track.duration_ms ? track.duration_ms / 60000 : 0).toFixed(2)} min | ⭐ {track.popularity ?? "N/A"}
+                                    </div>
+
+                                    <div className="favourite-tracks__stats">
+                                        <div className="stat">
+                                            <span>Danceable</span>
+                                            <progress value={dataset.danceable} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Male</span>
+                                            <progress value={dataset.male} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Aggressive</span>
+                                            <progress value={dataset.mood_aggressive} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Electronic</span>
+                                            <progress value={dataset.mood_electronic} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Happy</span>
+                                            <progress value={dataset.mood_happy} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Party</span>
+                                            <progress value={dataset.mood_party} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Relaxed</span>
+                                            <progress value={dataset.mood_relaxed} max="1"></progress>
+                                        </div>
+                                        <div className="stat">
+                                            <span>Sad</span>
+                                            <progress value={dataset.mood_sad} max="1"></progress>
+                                        </div>
                                     </div>
                                 </div>
 

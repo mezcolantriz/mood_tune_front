@@ -21,17 +21,18 @@
             text-decoration: none;
             color: $pureWhite;
             font-weight: bold;
-            transition: color 0.2s ease-in;
+            transition: all 0.3s ease-in;
 
             &:hover {
                 color: $limePop;
+                scale: 1.06;
             }
         }
 
         
         .selected {
             border-bottom: 2px solid $pureWhite;
-            transition: border-color 0.2s ease-in;
+            transition: border-color 0.3s ease-in;
             &:hover {
                 border-color: $limePop;
             }
@@ -45,5 +46,21 @@
 
     .topmenu__settings {
         display: flex;
+    }
+
+    .logout-button {
+        color: $midLightGray;
+        padding: 4px 12px;
+        border: 1.5px solid $midLightGray;
+        border-radius: 8px;
+        margin-left: 20px;
+        transition: all 0.3s ease-in;
+
+        &:hover {
+            color: $pureWhite;
+            background-color: $mediumGray;
+            border-color: $mediumGray;
+            scale: 1.06;
+        }
     }
 }
