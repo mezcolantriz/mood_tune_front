@@ -22,29 +22,30 @@ const MoodForm = () => {
   
     setLoading(true);
     try {
-      const genresToSend = selectedGenres.includes("all genres") ? [] : selectedGenres;
+      // 🔹 Si el usuario ha seleccionado "Cualquier género", enviamos `null` para no filtrar
+      const genresToSend = selectedGenres.includes("all genres") ? null : selectedGenres;
   
-      // 📌 Hacer la petición al backend para obtener las canciones recomendadas
+      // 📌 Enviar la solicitud al backend con los géneros seleccionados
       const response = await fetch(`${API_URL}/songs/mood`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ moodText, genres: genresToSend }),
+        body: JSON.stringify({ moodText, genres: genresToSend }), 
       });
   
       if (!response.ok) throw new Error("Error al obtener la playlist");
   
       const recommendedSongs = await response.json();
       localStorage.setItem("moodPlaylist", JSON.stringify(recommendedSongs));
-      localStorage.setItem("moodText", moodText); // 💡 Solo guardarlo aquí
+      localStorage.setItem("moodText", moodText); 
   
-      navigate("/moods"); // Redirigir a la página de moods en la misma pestaña
+      navigate("/moods");
   
     } catch (error) {
       console.error("Error al obtener las recomendaciones:", error);
     } finally {
       setLoading(false);
     }
-  };
+  };  
   
   return (
     <div className="mood-form">
